@@ -1,0 +1,124 @@
+
+const root = document.getElementById('boss-root');
+let groups = {};
+BOSSES.forEach((b,i)=>{ (groups[b.act] ||= []).push({...b,i}); });
+
+const order = [1,2,3,4,'boss'];
+const actNumeral = {1:'I',2:'II',3:'III',4:'IV','boss':'★'};
+
+// Map every spell & ultimate to its V Rising spell school for colour-coding
+const SCHOOL = {
+  // Blood
+  "Veil of Blood":"blood","Crimson Beam":"blood","Heart Strike":"blood","Sanguine Coil":"blood","Blood Rage":"blood","Blood Rite":"blood","Shadowbolt":"blood","Blood Fountain":"blood","Carrion Swarm":"blood",
+  // Chaos
+  "Chaos Volley":"chaos","Veil of Chaos":"chaos","Chaos Barrage":"chaos","Merciless Charge":"chaos","Aftershock":"chaos","Power Surge":"chaos",
+  // Frost
+  "Veil of Frost":"frost","Crystal Lance":"frost","Frost Barrier":"frost","Arctic Storm":"frost","Cold Snap":"frost",
+  // Unholy
+  "Corrupted Skull":"unholy","Ward of the Damned":"unholy","Veil of Bones":"unholy","Bone Explosion":"unholy","Death Knight":"unholy","Soulburn":"unholy","Unholy Chains":"unholy","Army of the Dead":"unholy",
+  // Illusion
+  "Spectral Wolf":"illusion","Veil of Illusion":"illusion","Phantom Aegis":"illusion","Wraith Spear":"illusion","Spectral Guardian":"illusion","Wisp Dance":"illusion","Curse":"illusion",
+  // Storm
+  "Veil of Storm":"storm","Ball Lightning":"storm","Cyclone":"storm","Discharge":"storm","Polarity Shift":"storm","Lightning Tendrils":"storm","Lightning Curtain":"storm","Raging Tempest":"storm","Lightning Typhoon":"storm"
+};
+const school = name => SCHOOL[name] || '';
+
+function kitRows(b){
+  const none = v => !v || v === '—';
+  const pill = v => none(v) ? `<span class="pill empty">—</span>` : `<span class="pill ${school(v)}">${v}</span>`;
+  const veilCell = none(b.veil)
+    ? `<span class="pill empty">none yet</span><span class="slotnote">unlocks later</span>`
+    : `${pill(b.veil)}<span class="slotnote">movement</span>`;
+  const spellsCell = b.spells.filter(s=>!none(s)).length
+    ? b.spells.map(s=>none(s)?'':pill(s)).join('')
+    : `<span class="pill empty">basic attacks only</span>`;
+  const ultCell = none(b.ult)
+    ? `<span class="pill empty">none yet</span><span class="slotnote">unlocks later</span>`
+    : pill(b.ult);
+  let html = '';
+  html += `<div class="loadout-label">Loadout</div><div class="kit">`;
+  html += `<div class="kit-row"><span class="tag">Weapon</span><span class="val">${b.weapon}</span></div>`;
+  html += `<div class="kit-row"><span class="tag">Blood</span><span class="val">${b.blood.map(x=>`${x[0]} <em>— ${x[1]}</em>`).join('<br>')}</span></div>`;
+  html += `<div class="kit-row"><span class="tag">Veil</span><span class="val">${veilCell}</span></div>`;
+  html += `<div class="kit-row"><span class="tag">Spells</span><span class="val">${spellsCell}</span></div>`;
+  html += `<div class="kit-row"><span class="tag">Ultimate</span><span class="val">${ultCell}</span></div>`;
+  html += `</div>`;
+  return html;
+}
+
+function render(){
+  root.innerHTML = '';
+  order.forEach(act=>{
+    const list = groups[act]; if(!list) return;
+    const band = document.createElement('div');
+    band.className='act-band'; band.dataset.act=act;
+    band.innerHTML = `<div class="act-num">${actNumeral[act]}</div>
+      <div class="act-info"><h2>${ACTS[act].title}</h2><p>${ACTS[act].sub}</p></div>
+      <div class="act-rule"></div>`;
+    root.appendChild(band);
+    const grid = document.createElement('div'); grid.className='grid'; grid.dataset.act=act;
+    list.forEach(b=>{
+      const card = document.createElement('article');
+      card.className='card'; card.dataset.act=act;
+      card.dataset.search = (b.name+' '+b.epithet+' '+b.loc+' '+b.weapon+' '+b.threat+' '+b.veil+' '+b.spells.join(' ')+' '+b.ult).toLowerCase();
+      card.style.setProperty('--accent', b.ac);
+      card.innerHTML = `
+        <div class="card-head">
+          <div class="lvl"><b>${b.lvl}</b><span>GL</span></div>
+          <div class="card-title">
+            <h3>${b.name}</h3>
+            <div class="epithet">${b.epithet}</div>
+            <span class="loc">${b.loc}</span>
+          </div>
+          <div class="chevron">▼</div>
+        </div>
+        <div class="card-body"><div class="card-body-inner">
+          <p class="threat">${b.threat}</p>
+          ${kitRows(b)}
+          <div class="gate"><span class="glabel">Gear you'll already have here</span>${b.gate}</div>
+          <div class="tip">${b.tip}</div>
+          <div class="reward"><b>UNLOCKS</b> &nbsp;${b.reward}</div>
+        </div></div>`;
+      card.querySelector('.card-head').addEventListener('click',()=>card.classList.toggle('open'));
+      grid.appendChild(card);
+    });
+    root.appendChild(grid);
+  });
+}
+render();
+
+// filters
+const filterBtns = document.querySelectorAll('#filters button');
+let activeFilter='all';
+filterBtns.forEach(btn=>btn.addEventListener('click',()=>{
+  filterBtns.forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  activeFilter = btn.dataset.act;
+  applyFilters();
+}));
+
+const searchInput = document.getElementById('search');
+const noResults = document.getElementById('noResults');
+searchInput.addEventListener('input', applyFilters);
+
+function applyFilters(){
+  const q = searchInput.value.trim().toLowerCase();
+  let anyVisible = false;
+  document.querySelectorAll('.grid').forEach(grid=>{
+    let gridHas = false;
+    grid.querySelectorAll('.card').forEach(card=>{
+      const matchAct = activeFilter==='all' || card.dataset.act===activeFilter;
+      const matchSearch = !q || card.dataset.search.includes(q);
+      const show = matchAct && matchSearch;
+      card.style.display = show?'':'none';
+      if(show){gridHas=true; anyVisible=true;}
+    });
+    const band = document.querySelector(`.act-band[data-act="${grid.dataset.act}"]`);
+    grid.style.display = gridHas?'':'none';
+    if(band) band.style.display = gridHas?'':'none';
+  });
+  noResults.style.display = anyVisible?'none':'block';
+}
+</script>
+</body>
+</html>

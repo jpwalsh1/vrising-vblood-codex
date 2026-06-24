@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Hunt — V Rising V Blood Codex</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#0a0708;
+    --pitch:#120c0e;
+    --crypt:#1a1113;
+    --stone:#241a1c;
+    --ash:#3a2a2d;
+    --bone:#cdbfb2;
+    --bone-dim:#8c7d74;
+    --parchment:#e8ddc9;
+    --blood:#8a1420;
+    --blood-bright:#c41e2a;
+    --ember:#e0512e;
+    --gold:#c9a24b;
+    --frost:#5a8ca8;
+    --shadow:#6b4a82;
+    --holy:#d4b15a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--void);
+    color:var(--bone);
+    font-family:'Cormorant Garamond',serif;
+    font-size:18px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  /* texture overlay */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(138,20,32,.10), transparent 55%),
+      radial-gradient(ellipse at 80% 100%, rgba(107,74,130,.07), transparent 50%);
+    mix-blend-mode:screen;
+  }
+  ::selection{background:var(--blood);color:var(--parchment)}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;z-index:2;
+    min-height:88vh;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;
+    text-align:center;
+    padding:6rem 1.5rem 4rem;
+    background:
+      radial-gradient(circle at 50% 38%, rgba(196,30,42,.16), transparent 60%),
+      linear-gradient(180deg, var(--pitch), var(--void));
+    border-bottom:1px solid var(--ash);
+    overflow:hidden;
+  }
+  .hero-glow{
+    position:absolute;top:30%;left:50%;transform:translate(-50%,-50%);
+    width:min(900px,90vw);height:min(900px,90vw);
+    background:radial-gradient(circle, rgba(196,30,42,.12), transparent 65%);
+    filter:blur(40px);pointer-events:none;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:.72rem;letter-spacing:.55em;text-transform:uppercase;
+    color:var(--blood-bright);margin-bottom:2rem;padding-left:.55em;
+    position:relative;z-index:2;
+  }
+  .hero h1{
+    font-family:'Cinzel',serif;font-weight:900;
+    font-size:clamp(2.8rem,9vw,7rem);
+    line-height:.95;letter-spacing:.02em;
+    color:var(--parchment);
+    text-shadow:0 0 38px rgba(196,30,42,.35), 0 2px 0 #000;
+    position:relative;z-index:2;
+  }
+  .hero h1 .accent{
+    display:block;
+    color:var(--blood-bright);
+    font-size:.42em;letter-spacing:.18em;margin-top:.4em;font-weight:600;
+    text-shadow:0 0 24px rgba(196,30,42,.5);
+  }
+  .hero p.sub{
+    max-width:640px;margin:2.2rem auto 0;
+    font-size:1.3rem;font-style:italic;color:var(--bone-dim);
+    position:relative;z-index:2;
+  }
+  .hero-meta{
+    margin-top:3rem;display:flex;gap:2.5rem;flex-wrap:wrap;justify-content:center;
+    position:relative;z-index:2;
+  }
+  .hero-meta .stat{font-family:'JetBrains Mono',monospace;text-align:center}
+  .hero-meta .stat b{
+    display:block;font-size:1.9rem;color:var(--gold);font-weight:700;
+  }
+  .hero-meta .stat span{
+    font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--bone-dim);
+  }
+  .scroll-hint{
+    margin-top:3.5rem;font-family:'JetBrains Mono',monospace;
+    font-size:.6rem;letter-spacing:.4em;text-transform:uppercase;color:var(--ash);
+    position:relative;z-index:2;animation:bob 2.4s ease-in-out infinite;
+  }
+  @keyframes bob{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(6px);opacity:1}}
+
+  /* ---------- CONTROLS ---------- */
+  .controls{
+    position:sticky;top:0;z-index:20;
+    background:linear-gradient(180deg, rgba(10,7,8,.97), rgba(10,7,8,.88));
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--ash);
+    padding:1rem 1.5rem;
+  }
+  .controls-inner{
+    max-width:1240px;margin:0 auto;
+    display:flex;gap:1rem;align-items:center;flex-wrap:wrap;justify-content:space-between;
+  }
+  .search-wrap{position:relative;flex:1;min-width:220px;max-width:380px}
+  .search-wrap input{
+    width:100%;background:var(--crypt);border:1px solid var(--ash);
+    color:var(--parchment);font-family:'Cormorant Garamond',serif;font-size:1.05rem;
+    padding:.65rem 1rem .65rem 2.4rem;border-radius:2px;outline:none;
+    transition:border-color .2s, box-shadow .2s;
+  }
+  .search-wrap input:focus{border-color:var(--blood);box-shadow:0 0 0 2px rgba(138,20,32,.3)}
+  .search-wrap input::placeholder{color:var(--bone-dim);font-style:italic}
+  .search-wrap::before{
+    content:"⌖";position:absolute;left:.8rem;top:50%;transform:translateY(-50%);
+    color:var(--blood-bright);font-size:1rem;
+  }
+  .filters{display:flex;gap:.4rem;flex-wrap:wrap}
+  .filters button{
+    background:transparent;border:1px solid var(--ash);color:var(--bone-dim);
+    font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.15em;
+    text-transform:uppercase;padding:.55rem .85rem;border-radius:2px;cursor:pointer;
+    transition:all .18s;
+  }
+  .filters button:hover{color:var(--parchment);border-color:var(--bone-dim)}
+  .filters button.active{
+    background:var(--blood);border-color:var(--blood-bright);color:var(--parchment);
+    box-shadow:0 0 16px rgba(196,30,42,.4);
+  }
+
+  /* ---------- LAYOUT ---------- */
+  main{position:relative;z-index:2;max-width:1240px;margin:0 auto;padding:3rem 1.5rem 6rem}
+  .act-band{margin:4rem 0 2rem;display:flex;align-items:baseline;gap:1.2rem}
+  .act-band:first-child{margin-top:1rem}
+  .act-num{
+    font-family:'Cinzel',serif;font-weight:900;font-size:3.2rem;color:var(--ash);
+    line-height:1;
+  }
+  .act-info h2{
+    font-family:'Cinzel',serif;font-weight:700;font-size:1.5rem;color:var(--parchment);
+    letter-spacing:.04em;
+  }
+  .act-info p{font-style:italic;color:var(--bone-dim);font-size:1.05rem}
+  .act-rule{flex:1;height:1px;background:linear-gradient(90deg,var(--ash),transparent);align-self:center;margin-left:1rem}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.4rem}
+
+  /* ---------- CARD ---------- */
+  .card{
+    background:linear-gradient(165deg, var(--crypt), var(--pitch));
+    border:1px solid var(--ash);border-radius:3px;
+    overflow:hidden;position:relative;
+    transition:transform .25s, border-color .25s, box-shadow .25s;
+  }
+  .card::before{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+    background:var(--accent,var(--blood));transition:width .25s;
+  }
+  .card:hover{
+    transform:translateY(-4px);
+    border-color:var(--accent,var(--blood));
+    box-shadow:0 14px 40px rgba(0,0,0,.6), 0 0 30px rgba(196,30,42,.12);
+  }
+  .card:hover::before{width:5px}
+
+  .card-head{padding:1.3rem 1.4rem 1rem;cursor:pointer;display:flex;gap:1rem;align-items:flex-start}
+  .lvl{
+    flex-shrink:0;width:54px;height:54px;border-radius:3px;
+    background:var(--void);border:1px solid var(--accent,var(--blood));
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    font-family:'JetBrains Mono',monospace;
+  }
+  .lvl b{font-size:1.25rem;color:var(--accent,var(--blood-bright));font-weight:700;line-height:1}
+  .lvl span{font-size:.5rem;letter-spacing:.2em;color:var(--bone-dim);text-transform:uppercase;margin-top:2px}
+  .card-title{flex:1;min-width:0}
+  .card-title h3{
+    font-family:'Cinzel',serif;font-weight:600;font-size:1.18rem;color:var(--parchment);
+    line-height:1.15;letter-spacing:.01em;
+  }
+  .card-title .epithet{font-style:italic;color:var(--bone-dim);font-size:.98rem;margin-top:.1rem}
+  .card-title .loc{
+    font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--accent,var(--blood));margin-top:.5rem;display:block;
+  }
+  .chevron{align-self:center;color:var(--bone-dim);transition:transform .25s;font-size:.9rem}
+  .card.open .chevron{transform:rotate(180deg)}
+
+  .card-body{
+    max-height:0;overflow:hidden;
+    transition:max-height .4s ease;
+  }
+  .card.open .card-body{max-height:1400px}
+  .card-body-inner{padding:0 1.4rem 1.4rem;border-top:1px solid var(--stone);margin-top:.2rem;padding-top:1.1rem}
+
+  .threat{font-style:italic;color:var(--bone);font-size:1.02rem;margin-bottom:1.2rem;line-height:1.5}
+  .threat b{color:var(--ember);font-style:normal;font-weight:600}
+
+  .loadout-label{
+    font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.28em;
+    text-transform:uppercase;color:var(--gold);margin:1.1rem 0 .55rem;
+    display:flex;align-items:center;gap:.6rem;
+  }
+  .loadout-label::after{content:"";flex:1;height:1px;background:var(--stone)}
+  .kit{display:flex;flex-direction:column;gap:.5rem}
+  .kit-row{display:flex;gap:.7rem;align-items:baseline;font-size:1rem}
+  .kit-row .tag{
+    flex-shrink:0;width:74px;font-family:'JetBrains Mono',monospace;font-size:.58rem;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--bone-dim);padding-top:.15rem;
+  }
+  .kit-row .val{color:var(--parchment)}
+  .kit-row .val em{color:var(--bone-dim);font-size:.92rem}
+  .pill{
+    display:inline-block;background:var(--stone);border:1px solid var(--ash);
+    color:var(--bone);padding:.1rem .55rem;border-radius:2px;font-size:.9rem;
+    margin:.12rem .25rem .12rem 0;
+  }
+  /* coloured by spell school */
+  .pill.blood   {border-color:#b8323e;color:#f0a9ad;background:rgba(184,50,62,.12)}
+  .pill.chaos   {border-color:#d9622e;color:#f3b083;background:rgba(217,98,46,.12)}
+  .pill.frost   {border-color:#4f93c4;color:#a8d4ec;background:rgba(79,147,196,.12)}
+  .pill.unholy  {border-color:#4f9d6b;color:#9fd9b3;background:rgba(79,157,107,.12)}
+  .pill.illusion{border-color:#9b6fc4;color:#cdb0ec;background:rgba(155,111,196,.13)}
+  .pill.storm   {border-color:#d4b24a;color:#ecd693;background:rgba(212,178,74,.12)}
+  .pill.empty   {border-style:dashed;border-color:var(--ash);color:var(--bone-dim);background:transparent}
+  .slotnote{
+    font-family:'JetBrains Mono',monospace;font-size:.52rem;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--bone-dim);margin-left:.5rem;
+  }
+  .tip{
+    margin-top:1.1rem;padding:.8rem 1rem;background:rgba(138,20,32,.08);
+    border-left:2px solid var(--blood);border-radius:0 2px 2px 0;
+    font-size:.98rem;font-style:italic;color:var(--bone);
+  }
+  .tip b{color:var(--ember);font-style:normal}
+
+  .reward{
+    margin-top:1rem;font-family:'JetBrains Mono',monospace;font-size:.62rem;
+    letter-spacing:.05em;color:var(--bone-dim);line-height:1.7;
+  }
+  .reward b{color:var(--gold);letter-spacing:.18em}
+  .gate{
+    margin-top:.9rem;padding:.65rem .85rem;border:1px dashed var(--ash);border-radius:2px;
+    background:rgba(90,140,168,.06);font-size:.92rem;color:var(--bone);line-height:1.5;
+  }
+  .gate .glabel{
+    display:block;font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.24em;
+    text-transform:uppercase;color:var(--frost);margin-bottom:.25rem;
+  }
+
+  .no-results{
+    text-align:center;padding:5rem 1rem;color:var(--bone-dim);font-style:italic;font-size:1.3rem;
+    display:none;
+  }
+
+  /* ---------- PRIMER ---------- */
+  .primer{
+    background:linear-gradient(165deg,var(--crypt),var(--pitch));
+    border:1px solid var(--ash);border-radius:3px;padding:2rem;margin-bottom:1rem;
+  }
+  .primer h2{
+    font-family:'Cinzel',serif;font-weight:700;font-size:1.4rem;color:var(--parchment);
+    margin-bottom:1.2rem;letter-spacing:.03em;
+  }
+  .primer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.4rem}
+  .primer-grid .col h4{
+    font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--blood-bright);margin-bottom:.5rem;
+  }
+  .primer-grid .col p{font-size:1rem;color:var(--bone);line-height:1.55}
+  .primer-grid .col p b{color:var(--parchment);font-weight:600}
+  .legend{
+    margin-top:1.6rem;padding-top:1.3rem;border-top:1px solid var(--stone);
+    display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;
+  }
+  .legend-label{
+    font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.24em;
+    text-transform:uppercase;color:var(--bone-dim);margin-right:.4rem;
+  }
+
+  footer{
+    position:relative;z-index:2;text-align:center;padding:3rem 1.5rem 4rem;
+    border-top:1px solid var(--ash);color:var(--bone-dim);font-size:.92rem;font-style:italic;
+  }
+  footer .mono{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.2em;
+    text-transform:uppercase;font-style:normal;margin-top:.8rem;color:var(--ash)}
+
+  @media(max-width:560px){
+    body{font-size:17px}
+    .grid{grid-template-columns:1fr}
+    .act-num{font-size:2.4rem}
+    .hero-meta{gap:1.6rem}
+    .kit-row{flex-direction:column;gap:.1rem}
+    .kit-row .tag{padding-top:0}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-glow"></div>
+  <div class="eyebrow">A Vampire's Codex · V Rising 1.1</div>
+  <h1>The Hunt<span class="accent">— V Blood to Dracula —</span></h1>
+  <p class="sub">Every V Blood carrier from the first wolf to the Immortal King — and the exact loadout to drink them dry.</p>
+  <div class="hero-meta">
+    <div class="stat"><b>62</b><span>Bosses Charted</span></div>
+    <div class="stat"><b>16–91</b><span>Gear Range</span></div>
+    <div class="stat"><b>4</b><span>Acts to Dawn</span></div>
+  </div>
+  <div class="scroll-hint">▾ Descend into the codex ▾</div>
+</header>
+
+<nav class="controls">
+  <div class="controls-inner">
+    <div class="search-wrap">
+      <input type="text" id="search" placeholder="Search a boss, region, or weapon…" aria-label="Search bosses">
+    </div>
+    <div class="filters" id="filters">
+      <button class="active" data-act="all">All</button>
+      <button data-act="1">Act I · 16–37</button>
+      <button data-act="2">Act II · 44–58</button>
+      <button data-act="3">Act III · 60–65</button>
+      <button data-act="4">Act IV · 66–84</button>
+      <button data-act="boss">Endgame · 84–91</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <section class="primer">
+    <h2>Before the hunt</h2>
+    <div class="primer-grid">
+      <div class="col">
+        <h4>Weapon first</h4>
+        <p>A maxed weapon swings the most damage of any single upgrade. <b>Match the boss's gear level</b> — every level under it costs you 4% damage and 4% extra taken.</p>
+      </div>
+      <div class="col">
+        <h4>Blood is a stat</h4>
+        <p>Run <b>Rogue (crit)</b> or <b>Brute (lifesteal)</b> at 90%+ for melee; <b>Scholar</b> for casters; <b>Draculin</b> for Chaos burst. Quality matters as much as type.</p>
+      </div>
+      <div class="col">
+        <h4>Slot your jewels</h4>
+        <p>From the mid-game on, <b>Spell Jewels</b> reshape your abilities — split-shot Corrupted Skull, lifesteal Death Knight, longer Ward. Bring two potions every fight.</p>
+      </div>
+      <div class="col">
+        <h4>Earn before you equip</h4>
+        <p>Every loadout here uses <b>only what you'd already hold</b> when you arrive — a boss's weapon or veil is its <b>reward</b>, not your tool for that fight. Each card lists the gear you'll have in hand.</p>
+      </div>
+    </div>
+    <div class="legend">
+      <span class="legend-label">Spell schools</span>
+      <span class="pill blood">Blood</span>
+      <span class="pill chaos">Chaos</span>
+      <span class="pill frost">Frost</span>
+      <span class="pill unholy">Unholy</span>
+      <span class="pill illusion">Illusion</span>
+      <span class="pill storm">Storm</span>
+    </div>
+  </section>
+
+  <div id="boss-root"></div>
+  <div class="no-results" id="noResults">No carrier by that name walks these lands.</div>
+</main>
+
+<footer>
+  Loadouts are starting points, not scripture — tune them to your blood, your gems, and your nerve.<br>
+  <span class="mono">Verified against V Rising 1.1 · Invaders of Oakveil — boss positions may shift with patches</span>
+</footer>
+
+<script>
+const ACTS = {
+  1:{title:"Act I — Farbane Woods", sub:"Bone to copper to iron. Forms, your first veils, and the road out of the woods."},
+  2:{title:"Act II — Dunley & the Iron Roads", sub:"Frost, holy light, and the first true tests of your gear."},
+  3:{title:"Act III — Gloomrot & the Cursed Forest", sub:"Lightning factories and rot-choked woods. Spells come into their own."},
+  4:{title:"Act IV — The Long Climb to Mortium", sub:"Holy fortresses, the Behemoth, and the road to the Immortal King."},
+  boss:{title:"The Mortium Endgame — Shards & the Throne", sub:"The Behemoth, the Soul Shard carriers, and the long climb to Dracula himself."}
+};
+
+// accent palette per damage school for variety
+const C = {blood:'#c41e2a', frost:'#5a8ca8', shadow:'#8a6aa8', holy:'#c9a24b', storm:'#5fa8c4', ember:'#e0512e'};
+
