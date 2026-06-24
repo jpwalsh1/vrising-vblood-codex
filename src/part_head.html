@@ -383,6 +383,18 @@
   .cheat-table .ct-tag{display:block;font-size:.62rem;color:var(--gold);opacity:.7;margin-top:.12rem;font-family:'JetBrains Mono',monospace;letter-spacing:.1em}
   .cheat-table .ct-tag.form{color:#cdb0ec;opacity:.8}
 
+  /* ---------- GEAR CHECKPOINTS ---------- */
+  .checkpoint{max-width:860px;margin:2rem auto 0;padding:1.25rem 1.75rem 1.4rem;
+    border:1px solid rgba(201,162,75,.2);border-left:3px solid rgba(201,162,75,.55);
+    background:rgba(201,162,75,.035);border-radius:3px}
+  .checkpoint-label{font-family:'JetBrains Mono',monospace;font-size:.48rem;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--gold);opacity:.65;display:block;margin-bottom:.5rem}
+  .checkpoint-heading{font-size:.92rem;font-weight:700;color:var(--bone);margin-bottom:1rem;letter-spacing:.01em}
+  .checkpoint-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:.45rem 2.5rem}
+  .cp-row{display:flex;gap:.7rem;align-items:baseline;font-size:.8rem;color:var(--parchment)}
+  .cp-kind{font-family:'JetBrains Mono',monospace;font-size:.46rem;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--gold);opacity:.6;min-width:56px;flex-shrink:0;padding-top:.1rem}
+
   /* ---------- MOBILE TWEAKS ---------- */
   @media(max-width:400px){
     .card-reward{display:none}
@@ -444,7 +456,7 @@
   <h1>The Hunt<span class="accent">— V Blood to Dracula —</span></h1>
   <p class="sub">Every V Blood carrier from the first wolf to the Immortal King — and the exact loadout to drink them dry.</p>
   <div class="hero-meta">
-    <div class="stat"><b>62</b><span>Bosses Charted</span></div>
+    <div class="stat"><b>64</b><span>Bosses Charted</span></div>
     <div class="stat"><b>16–91</b><span>Gear Range</span></div>
     <div class="stat"><b>4</b><span>Acts to Dawn</span></div>
   </div>
@@ -517,6 +529,41 @@ const ACTS = {
   3:{title:"Act III — Gloomrot & the Cursed Forest", sub:"Lightning factories and rot-choked woods. Spells come into their own."},
   4:{title:"Act IV — The Long Climb to Mortium", sub:"Holy fortresses, the Behemoth, and the road to the Immortal King."},
   boss:{title:"The Mortium Endgame — Shards & the Throne", sub:"The Behemoth, the Soul Shard carriers, and the long climb to Dracula himself."}
+};
+
+const CHECKPOINTS = {
+  2:{heading:"Before Entering Dunley Farmlands",items:[
+    {kind:"Weapon",  note:"Iron Crossbow or Greatsword — copper is outclassed past GL 40; Greatsword recipe from Tristan (GL 44)"},
+    {kind:"Armor",   note:"Leather gear — craft at Tannery (Keely GL 20); stock up before leaving Farbane"},
+    {kind:"Station", note:"Smithy · Tailoring Bench — both from Quincey (GL 37); needed for all Act II crafting"},
+    {kind:"Veil",    note:"Veil of Chaos (Clive GL 30) — double-dash is near-mandatory for the roaming boss gauntlet"},
+    {kind:"Ultimate",note:"Chaos Barrage or Merciless Charge — your first ultimates, from Quincey (GL 37)"},
+    {kind:"Form",    note:"Bear Form (Kodia GL 35) — required to breach Quincey's gate if skipping the explosive route"}
+  ]},
+  3:{heading:"Before Entering Gloomrot & Cursed Forest",items:[
+    {kind:"Weapon",  note:"Dark Silver weapons — Ancestral Forge unlocks from Octavian (GL 58); farm ore before the fight"},
+    {kind:"Armor",   note:"Hollowfang or Loom cloth gear (Beatrice GL 40) — stock cotton and wool through mid-Act II"},
+    {kind:"Station", note:"Ancestral Forge (Octavian GL 58) · Study (Nicholaus GL 37) for scroll and recipe research"},
+    {kind:"Veil",    note:"Veil of Blood (Beatrice GL 40) — primary mobility through Act III; escapes freeze lock"},
+    {kind:"Spell",   note:"Corrupted Skull (Kriig GL 47) · Ward of the Damned (Nicholaus GL 37) — Act III core loadout"},
+    {kind:"Ultimate",note:"Heart Strike (GL 37) — workhorse ultimate through most of Act III"}
+  ]},
+  4:{heading:"Before Entering Silverlight Hills & Oakveil",items:[
+    {kind:"Weapon",  note:"Maxed Dark Silver — bring your best Act III loadout; Sanguine tier begins mid-Act IV (GL 75+)"},
+    {kind:"Armor",   note:"Hollowfang gear maxed · begin stockpiling Primal Blood Essence for Sanguine crafting ahead"},
+    {kind:"Station", note:"Fabricator (Ziva GL 60) · Advanced Furnace (Cyril GL 65) — Act IV crafting backbone"},
+    {kind:"Resist",  note:"Silver Resistance — potions or gear; Silverlight Hills deal constant silver damage on approach"},
+    {kind:"Veil",    note:"Veil of Illusion (Polora GL 35) or Veil of Storm (GL 50) — agility in open holy zones"},
+    {kind:"Resource",note:"Primal Blood Essence — required for GL 74+ boss coffins and all Sanguine-tier crafting"}
+  ]},
+  boss:{heading:"Before the Final Push — Mortium",items:[
+    {kind:"Weapon",  note:"Sanguine weapons — Fusion Forge from Dantos (GL 82) is the gate; one tier above Dark Silver"},
+    {kind:"Armor",   note:"Bloodmoon (Sanguine) armor — crafted at Fusion Forge; mandatory survival floor for endgame"},
+    {kind:"Station", note:"Fusion Forge (Dantos GL 82) · Athenaeum (Henry Blackbrew GL 74) for top-tier research"},
+    {kind:"Key",     note:"Blood Key — drops from Lord Styx (GL 84); required to enter Dracula's Castle"},
+    {kind:"Form",    note:"Bat Form (Lord Styx GL 84) — flight required for Talzur's arena and Mortium traversal"},
+    {kind:"Ultimate",note:"Crimson Beam (Styx GL 84) — premier Blood ultimate; upgrade from Heart Strike for the final bosses"}
+  ]}
 };
 
 // accent palette per damage school for variety

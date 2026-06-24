@@ -51,10 +51,25 @@ function kitRows(b){
   return html;
 }
 
+function renderCheckpoint(act){
+  const cp = CHECKPOINTS[act];
+  if(!cp) return null;
+  const div = document.createElement('div');
+  div.className='checkpoint'; div.dataset.act=act;
+  div.innerHTML = `<span class="checkpoint-label">Gear Checkpoint</span>
+    <div class="checkpoint-heading">${cp.heading}</div>
+    <div class="checkpoint-grid">${cp.items.map(i=>`
+      <div class="cp-row"><span class="cp-kind">${i.kind}</span><span>${i.note}</span></div>`).join('')}
+    </div>`;
+  return div;
+}
+
 function render(){
   root.innerHTML = '';
   order.forEach(act=>{
     const list = groups[act]; if(!list) return;
+    const cp = renderCheckpoint(act);
+    if(cp) root.appendChild(cp);
     const band = document.createElement('div');
     band.className='act-band'; band.dataset.act=act;
     band.innerHTML = `<div class="act-num">${actNumeral[act]}</div>
@@ -104,7 +119,7 @@ function buildCheatTable(){
   cheatRoot.innerHTML = `
     <div class="cheat-hdr">
       <h2>V Blood Codex — Quick Reference</h2>
-      <p>62 bosses · V Rising 1.1 · Invaders of Oakveil</p>
+      <p>64 bosses · V Rising 1.1 · Invaders of Oakveil</p>
     </div>
     <table class="cheat-table">
       <thead><tr>
@@ -173,8 +188,10 @@ function applyFilters(){
       if(show){gridHas=true; anyVisible=true;}
     });
     const band = document.querySelector(`.act-band[data-act="${grid.dataset.act}"]`);
+    const cp = document.querySelector(`.checkpoint[data-act="${grid.dataset.act}"]`);
     grid.style.display = gridHas?'':'none';
     if(band) band.style.display = gridHas?'':'none';
+    if(cp) cp.style.display = gridHas?'':'none';
   });
 
   // cheat table rows
