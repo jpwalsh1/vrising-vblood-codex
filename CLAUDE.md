@@ -122,17 +122,20 @@ Roughly priority-ordered. Ask before starting any of these.
 
 ### Needs research / data work
 
-- **Patch verification pass** — data reflects V Rising 1.1 (Invaders of Oakveil).
-  If Stunlock patches boss levels, locations, or ability unlock levels, update
-  `src/part_bosses.js` and the `UNLOCK` table in `validate.js`.
-
-- **Gear/jewel progression sidebar** — key gear milestones per act (what to farm before
-  moving on). Editorial work more than code; decide scope before starting.
+- **Gear progression checkpoints** — act-boundary milestone panels showing key gear targets
+  before entering / exiting each act (weapon tier, armor tier, key spells to have). Sits
+  between act banners in the card view. Editorial scope to decide: per-act summary only, or
+  per-boss kill-order checkpoints too? Aim for "minimum viable gear to not get walled."
 
 - **Alternate-ultimate expansion** — currently 12 bosses have `altUlt`. Could extend
   to more bosses or add a second alt where multiple builds diverge significantly.
 
 ### Low priority / quality of life
+
+- **Patch verification pass** — data reflects V Rising 1.1 (Invaders of Oakveil).
+  Stunlock Studios has announced no further major updates (studio moving to new game in
+  same universe), so the 1.1 data should remain stable. Low-effort spot-check only if
+  a balance hotfix ships.
 
 - **Dark/light mode toggle** — currently dark-only. Low priority for a game-reference page.
 
