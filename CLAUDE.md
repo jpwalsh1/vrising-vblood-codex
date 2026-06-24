@@ -1,7 +1,7 @@
 # CLAUDE.md — V Rising V Blood Codex
 
 Dark-themed, single-page reference for every V Blood boss in V Rising (patch 1.1).
-62 bosses across four acts plus the Mortium endgame. Each card shows a fight summary
+64 bosses across four acts plus the Mortium endgame. Each card shows a fight summary
 and a progression-legal loadout: weapon, blood type, veil, two spells, one ultimate.
 
 Live site: https://jpwalsh1.github.io/vrising-vblood-codex/
