@@ -22,6 +22,7 @@ const SCHOOL = {
   "Veil of Storm":"storm","Ball Lightning":"storm","Cyclone":"storm","Discharge":"storm","Polarity Shift":"storm","Lightning Tendrils":"storm","Lightning Curtain":"storm","Raging Tempest":"storm","Lightning Typhoon":"storm"
 };
 const school = name => SCHOOL[name] || '';
+const slugify = name => name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 
 const BT_CLASS = {Brute:'bt-brute',Rogue:'bt-rogue',Scholar:'bt-scholar',Warrior:'bt-warrior',Creature:'bt-creature',Draculin:'bt-draculin',Worker:'bt-worker'};
 const btSpan = name => BT_CLASS[name] ? `<span class="${BT_CLASS[name]}">${name}</span>` : name;
@@ -63,6 +64,8 @@ function render(){
     const grid = document.createElement('div'); grid.className='grid'; grid.dataset.act=act;
     list.forEach(b=>{
       const card = document.createElement('article');
+      const slug = slugify(b.name);
+      card.id = slug;
       card.className='card'; card.dataset.act=act;
       card.dataset.search = (b.name+' '+b.epithet+' '+b.loc+' '+b.weapon+' '+b.threat+' '+b.veil+' '+b.spells.join(' ')+' '+b.ult+' '+(b.altUlt||'')+' '+b.blood.map(x=>x[0]).join(' ')+' '+b.reward).toLowerCase();
       card.style.setProperty('--accent', b.ac);
@@ -70,7 +73,8 @@ function render(){
         <div class="card-head">
           <div class="lvl"><b>${b.lvl}</b><span>GL</span></div>
           <div class="card-title">
-            <h3>${b.name}</h3>
+            <h3>${b.name}<a class="card-anchor" href="#${slug}" title="Copy link to this card"
+              onclick="event.stopPropagation();navigator.clipboard?.writeText(location.origin+location.pathname+'#${slug}').catch(()=>{})">#</a></h3>
             <div class="epithet">${b.epithet}</div>
             <span class="loc">${b.loc}</span>
             <span class="card-reward">${b.reward}</span>
@@ -92,6 +96,53 @@ function render(){
 }
 render();
 
+function buildCheatTable(){
+  const cheatRoot = document.getElementById('cheat-root');
+  if(!cheatRoot) return;
+  const none = v => !v || v === '—';
+  cheatRoot.innerHTML = `
+    <div class="cheat-hdr">
+      <h2>V Blood Codex — Quick Reference</h2>
+      <p>62 bosses · V Rising 1.1 · Invaders of Oakveil</p>
+    </div>
+    <table class="cheat-table">
+      <thead><tr>
+        <th>GL</th><th>Boss</th><th>Blood</th><th>Weapon</th>
+        <th>Veil</th><th>Spells</th><th>Ultimate</th>
+      </tr></thead>
+      <tbody id="cheat-body"></tbody>
+    </table>`;
+  const tbody = document.getElementById('cheat-body');
+  order.forEach(act=>{
+    const list = groups[act]; if(!list) return;
+    const actRow = document.createElement('tr');
+    actRow.className='ct-act'; actRow.dataset.act=act;
+    actRow.innerHTML=`<td colspan="7">${ACTS[act].title}</td>`;
+    tbody.appendChild(actRow);
+    list.forEach(b=>{
+      const slug = slugify(b.name);
+      const weaponShort = b.weapon.split(/\s+[—–]\s+/)[0];
+      const veilShort = none(b.veil) ? '—' : b.veil.replace('Veil of ','');
+      const spellsText = b.spells.filter(s=>!none(s)).join(', ') || '—';
+      const bloodHtml = b.blood.map(x=>BT_CLASS[x[0]]?`<span class="${BT_CLASS[x[0]]}">${x[0]}</span>`:x[0]).join(' / ');
+      const ultHtml = none(b.ult) ? '—' : b.ult + (b.altUlt ? `<span class="ct-altult">alt: ${b.altUlt}</span>` : '');
+      const tr = document.createElement('tr');
+      tr.dataset.act = b.act;
+      tr.dataset.search = (b.name+' '+b.blood.map(x=>x[0]).join(' ')+' '+b.weapon+' '+b.loc).toLowerCase();
+      tr.innerHTML = `
+        <td class="ct-gl">${b.lvl}</td>
+        <td class="ct-name"><a href="#${slug}">${b.name}</a></td>
+        <td>${bloodHtml}</td>
+        <td>${weaponShort}</td>
+        <td>${veilShort}</td>
+        <td>${spellsText}</td>
+        <td class="ct-ult">${ultHtml}</td>`;
+      tbody.appendChild(tr);
+    });
+  });
+}
+buildCheatTable();
+
 // filters
 const filterBtns = document.querySelectorAll('#filters button');
 let activeFilter='all';
@@ -109,6 +160,8 @@ searchInput.addEventListener('input', applyFilters);
 function applyFilters(){
   const q = searchInput.value.trim().toLowerCase();
   let anyVisible = false;
+
+  // card grid
   document.querySelectorAll('.grid').forEach(grid=>{
     let gridHas = false;
     grid.querySelectorAll('.card').forEach(card=>{
@@ -122,8 +175,48 @@ function applyFilters(){
     grid.style.display = gridHas?'':'none';
     if(band) band.style.display = gridHas?'':'none';
   });
+
+  // cheat table rows
+  const cheatActHas = {};
+  document.querySelectorAll('#cheat-body tr:not(.ct-act)').forEach(tr=>{
+    const matchAct = activeFilter==='all' || String(tr.dataset.act)===String(activeFilter);
+    const matchSearch = !q || tr.dataset.search.includes(q);
+    const show = matchAct && matchSearch;
+    tr.style.display = show?'':'none';
+    if(show){ cheatActHas[tr.dataset.act]=true; anyVisible=true; }
+  });
+  document.querySelectorAll('#cheat-body tr.ct-act').forEach(tr=>{
+    tr.style.display = cheatActHas[tr.dataset.act]?'':'none';
+  });
+
   noResults.style.display = anyVisible?'none':'block';
 }
+
+// cheat sheet toggle
+const cheatToggle = document.getElementById('cheatToggle');
+cheatToggle.addEventListener('click',()=>{
+  document.body.classList.toggle('cheat-active');
+  cheatToggle.classList.toggle('active');
+  cheatToggle.textContent = document.body.classList.contains('cheat-active') ? '✕ Card View' : '⊞ Cheat Sheet';
+  if(!document.body.classList.contains('cheat-active')) window.scrollTo({top:0,behavior:'smooth'});
+});
+
+// hash routing — open and scroll to a card by URL fragment
+function handleHash(){
+  const hash = window.location.hash.slice(1);
+  if(!hash) return;
+  const card = document.getElementById(hash);
+  if(!card) return;
+  if(document.body.classList.contains('cheat-active')){
+    document.body.classList.remove('cheat-active');
+    cheatToggle.classList.remove('active');
+    cheatToggle.textContent='⊞ Cheat Sheet';
+  }
+  card.classList.add('open');
+  setTimeout(()=>card.scrollIntoView({behavior:'smooth',block:'center'}),80);
+}
+window.addEventListener('hashchange',handleHash);
+handleHash();
 </script>
 </body>
 </html>
