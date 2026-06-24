@@ -87,6 +87,11 @@ for (const b of BOSSES) {
   check(b.veil, 'veil');
   b.spells.forEach(s => check(s, 'spell'));
   check(b.ult, 'ult');
+  if (b.altUlt) {
+    if (!ULTS.has(b.altUlt)) hard.push(`[altUlt not an ultimate] ${b.name} -> ${b.altUlt}`);
+    if (!school(b.altUlt)) hard.push(`[altUlt no school mapping] ${b.name} -> ${b.altUlt}`);
+    check(b.altUlt, 'altUlt');
+  }
 }
 
 const byAct = a => BOSSES.filter(b => b.act === a).length;

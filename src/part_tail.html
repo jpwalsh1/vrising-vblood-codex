@@ -23,6 +23,9 @@ const SCHOOL = {
 };
 const school = name => SCHOOL[name] || '';
 
+const BT_CLASS = {Brute:'bt-brute',Rogue:'bt-rogue',Scholar:'bt-scholar',Warrior:'bt-warrior',Creature:'bt-creature',Draculin:'bt-draculin',Worker:'bt-worker'};
+const btSpan = name => BT_CLASS[name] ? `<span class="${BT_CLASS[name]}">${name}</span>` : name;
+
 function kitRows(b){
   const none = v => !v || v === '—';
   const pill = v => none(v) ? `<span class="pill empty">—</span>` : `<span class="pill ${school(v)}">${v}</span>`;
@@ -35,13 +38,14 @@ function kitRows(b){
   const ultCell = none(b.ult)
     ? `<span class="pill empty">none yet</span><span class="slotnote">unlocks later</span>`
     : pill(b.ult);
+  const altUltNote = b.altUlt ? `<span class="alt-ult">alt: ${pill(b.altUlt)}</span>` : '';
   let html = '';
   html += `<div class="loadout-label">Loadout</div><div class="kit">`;
   html += `<div class="kit-row"><span class="tag">Weapon</span><span class="val">${b.weapon}</span></div>`;
-  html += `<div class="kit-row"><span class="tag">Blood</span><span class="val">${b.blood.map(x=>`${x[0]} <em>— ${x[1]}</em>`).join('<br>')}</span></div>`;
+  html += `<div class="kit-row"><span class="tag">Blood</span><span class="val">${b.blood.map(x=>`${btSpan(x[0])} <em>— ${x[1]}</em>`).join('<br>')}</span></div>`;
   html += `<div class="kit-row"><span class="tag">Veil</span><span class="val">${veilCell}</span></div>`;
   html += `<div class="kit-row"><span class="tag">Spells</span><span class="val">${spellsCell}</span></div>`;
-  html += `<div class="kit-row"><span class="tag">Ultimate</span><span class="val">${ultCell}</span></div>`;
+  html += `<div class="kit-row"><span class="tag">Ultimate</span><span class="val">${ultCell}${altUltNote}</span></div>`;
   html += `</div>`;
   return html;
 }
@@ -60,7 +64,7 @@ function render(){
     list.forEach(b=>{
       const card = document.createElement('article');
       card.className='card'; card.dataset.act=act;
-      card.dataset.search = (b.name+' '+b.epithet+' '+b.loc+' '+b.weapon+' '+b.threat+' '+b.veil+' '+b.spells.join(' ')+' '+b.ult).toLowerCase();
+      card.dataset.search = (b.name+' '+b.epithet+' '+b.loc+' '+b.weapon+' '+b.threat+' '+b.veil+' '+b.spells.join(' ')+' '+b.ult+' '+(b.altUlt||'')+' '+b.blood.map(x=>x[0]).join(' ')+' '+b.reward).toLowerCase();
       card.style.setProperty('--accent', b.ac);
       card.innerHTML = `
         <div class="card-head">
@@ -69,6 +73,7 @@ function render(){
             <h3>${b.name}</h3>
             <div class="epithet">${b.epithet}</div>
             <span class="loc">${b.loc}</span>
+            <span class="card-reward">${b.reward}</span>
           </div>
           <div class="chevron">▼</div>
         </div>

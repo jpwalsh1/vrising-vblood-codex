@@ -162,7 +162,7 @@ const BOSSES = [
    blood:[["Brute","≥90% for lifesteal through the chip"],["Rogue","if you'd rather burst him from range"]],
    veil:"Veil of Blood",
    spells:["Chaos Volley","Spectral Wolf"],
-   ult:"Heart Strike",
+   ult:"Heart Strike",altUlt:"Chaos Barrage",
    tip:"<b>Kill the crossbow lackeys first</b>, then never eat a frost missile while exposed. Veil of Blood out of the freeze if you get clipped.",
    reward:"Veil of Frost · Frost Barrier · Prison Cell"},
 
@@ -228,7 +228,7 @@ const BOSSES = [
    blood:[["Rogue","crit duels favour you"]],
    veil:"Veil of Blood",
    spells:["Corrupted Skull","Ward of the Damned"],
-   ult:"Heart Strike",
+   ult:"Heart Strike",altUlt:"Chaos Barrage",
    tip:"<b>Punish his dash recovery.</b> He's brittle — out-trade him and the fight is short. Corrupted Skull (from Kriig) chips him between dashes.",
    reward:"Veil of Bones · Human Form · Daggers"},
 
@@ -372,7 +372,7 @@ const BOSSES = [
    blood:[["Brute","heal through the lingering pools"]],
    veil:"Veil of Chaos",
    spells:["Chaos Volley","Corrupted Skull"],
-   ult:"Chaos Barrage",
+   ult:"Chaos Barrage",altUlt:"Merciless Charge",
    tip:"His <b>charge is the whole fight</b> — sidestep it, hit the recovery, repeat. Veil of Chaos (from Clive) ignites him on the dash-out.",
    reward:"Tier 3 Chaos · Dawnthorn Armour Set"},
 
@@ -494,7 +494,7 @@ const BOSSES = [
    blood:[["Brute","longevity through the phases"]],
    veil:"Veil of Storm",
    spells:["Corrupted Skull","Ward of the Damned"],
-   ult:"Heart Strike",
+   ult:"Heart Strike",altUlt:"Army of the Dead",
    tip:"<b>Pace yourself.</b> Save defensive cooldowns for phase transitions where he combines mechanics. Grants the Athenaeum + Schematic crafting.",
    reward:"Tier 3 Storm · Athenaeum · Schematic"},
 
@@ -505,7 +505,7 @@ const BOSSES = [
    blood:[["Rogue","speed + crit to trade evenly"]],
    veil:"Veil of Chaos",
    spells:["Corrupted Skull","Ward of the Damned"],
-   ult:"Heart Strike",
+   ult:"Heart Strike",altUlt:"Chaos Barrage",
    tip:"<b>Dodge into her dashes, not away.</b> Use the blood tracker to find her on the Oakveil paths. Punish her teleport recovery. Unlocks Slashers.",
    reward:"Tier 2 Illusion (Mosquito / Mist Trance / Curse) · Passive Slot · Slashers"},
 
@@ -582,7 +582,7 @@ const BOSSES = [
    blood:[["Rogue","speed + crit duel"]],
    veil:"Veil of Chaos",
    spells:["Corrupted Skull","Chaos Volley"],
-   ult:"Chaos Barrage",
+   ult:"Chaos Barrage",altUlt:"Merciless Charge",
    tip:"<b>Stay just outside whip range</b> and dash in on his recovery. His grapple is the only real threat — dodge it.",
    reward:"Sanguine Whip · Passive Slot"},
 
@@ -604,7 +604,7 @@ const BOSSES = [
    blood:[["Brute","≥90% — this is a long lifesteal war"]],
    veil:"Veil of Blood",
    spells:["Corrupted Skull","Ward of the Damned"],
-   ult:"Heart Strike",
+   ult:"Heart Strike",altUlt:"Crimson Beam",
    tip:"<b>Out-sustain his drain.</b> Grants Bat Form and the Onyx Tear + Blood Key — the literal key to Dracula.",
    reward:"Bat Form · Onyx Tear · Blood Key"},
 
@@ -616,7 +616,7 @@ const BOSSES = [
    blood:[["Brute","survive a mistimed slam"]],
    veil:"Veil of Bones",
    spells:["Corrupted Skull","Ward of the Damned"],
-   ult:"Heart Strike",
+   ult:"Heart Strike",altUlt:"Army of the Dead",
    tip:"<b>Everything he does is telegraphed.</b> Dodge into his side after a slam, hit three times, reset.",
    reward:"Tier 3 Illusion · Bat Leather · Bat Leather Bag"},
 
@@ -627,7 +627,7 @@ const BOSSES = [
    blood:[["Brute","or Rogue if you can dodge cleanly"]],
    veil:"Veil of Blood",
    spells:["Corrupted Skull","Ward of the Damned"],
-   ult:"Heart Strike",
+   ult:"Heart Strike",altUlt:"Army of the Dead",
    tip:"<b>Watch for the red circle under you</b> — she leaps and slams with a spike ring. Roll out the instant it appears.",
    reward:"Blood Spell Point · Shadow Weave · Primal Jewels"},
 
@@ -638,7 +638,7 @@ const BOSSES = [
    blood:[["Rogue","crit to push phases fast"]],
    veil:"Veil of Bones",
    spells:["Corrupted Skull","Ward of the Damned"],
-   ult:"Heart Strike",
+   ult:"Heart Strike",altUlt:"Chaos Barrage",
    tip:"<b>Holy Resistance + clear the outer mobs</b> before engaging. Phase two adds wings and falling light — keep circling.",
    reward:"Soul Shard of Solarus · Dracula's Boots"},
 
@@ -671,7 +671,7 @@ const BOSSES = [
    blood:[["Brute","≥90% lifesteal is near-mandatory"]],
    veil:"Veil of Blood",
    spells:["Corrupted Skull","Ward of the Damned"],
-   ult:"Heart Strike",
+   ult:"Heart Strike",altUlt:"Chaos Barrage",
    tip:"<b>Disable the field nodes to move freely</b> — fighting on a live floor is a death sentence. Bring 2 EMPs (from Voltatia) just to enter. Don't rush him.",
    reward:"Soul Shard of the Monster · Dracula's Chestguard"},
 
@@ -682,7 +682,7 @@ const BOSSES = [
    blood:[["Brute","≥90% for the lifesteal war"],["Scholar","if running a Chaos Volley caster"]],
    veil:"Veil of Blood",
    spells:["Chaos Volley","Ward of the Damned"],
-   ult:"Heart Strike",
+   ult:"Heart Strike",altUlt:"Chaos Barrage",
    tip:"<b>Block the Howling Axes behind a pillar or Ward.</b> Dread Stab incapacitates — break it fast. Take the Hunger for Blood passive (+10% dmg), bring a 100% blood and two potions. Never stop punishing between his teleports.",
    reward:"The throne is yours. The hunt ends."}
 ];
