@@ -120,12 +120,11 @@ Roughly priority-ordered. Ask before starting any of these.
   whether to show a "reset to default" affordance, and how the cheat-sheet table reflects
   customised builds.
 
-### Needs research / data work
+### Completed (continued)
 
-- **Gear progression checkpoints** — act-boundary milestone panels showing key gear targets
-  before entering / exiting each act (weapon tier, armor tier, key spells to have). Sits
-  between act banners in the card view. Editorial scope to decide: per-act summary only, or
-  per-boss kill-order checkpoints too? Aim for "minimum viable gear to not get walled."
+- ~~**Gear progression checkpoints**~~ — done. Four panels before Act II/III/IV/Endgame, each with 6 bullet points (weapon tier, armor, stations, veil, spells, resources). Show/hide with act filters.
+
+### Needs research / data work
 
 - **Alternate-ultimate expansion** — currently 12 bosses have `altUlt`. Could extend
   to more bosses or add a second alt where multiple builds diverge significantly.
