@@ -1,6 +1,6 @@
 const BOSSES = [
   // ============ ACT I — FARBANE WOODS ============
-  {act:1,lvl:16,name:"Alpha the White Wolf",epithet:"the first hunt",loc:"Roaming · S Farbane Woods (wolf dens)",ac:C.frost,
+  {act:1,lvl:16,name:"Alpha the White Wolf",epithet:"the first hunt",loc:"Roaming · S Farbane Woods (wolf dens)",ac:C.frost,tag:"Wolf Form",tagKind:"form",
    threat:"A fast wolf that <b>lunges and circles</b>, hard to pin down in the open. Your very first V Blood — mostly a test of kiting.",
    weapon:"Spear or Mace — starter melee, poke on its lunges",
    gate:"Starter weapons only · base spells",
@@ -22,7 +22,7 @@ const BOSSES = [
    tip:"<b>Lean on your travel dash</b> to close the gap, and clear the camp adds first. Unlocks the Tannery (leather) + Frost Bat.",
    reward:"Tier 1 Frost (Frost Bat / Cold Snap / Ice Nova) · Tannery"},
 
-  {act:1,lvl:20,name:"Rufus the Foreman",epithet:"the crossbow boss",loc:"Static · Bandit Logging Camp, C Farbane",ac:C.blood,
+  {act:1,lvl:20,name:"Rufus the Foreman",epithet:"the crossbow boss",loc:"Static · Bandit Logging Camp, C Farbane",ac:C.blood,tag:"Crossbow Unlock",
    threat:"Fires a <b>heavy crossbow</b> that hits hard per shot, surrounded by logging-camp bandits who pile on.",
    weapon:"Mace or Axe — close and stay on him",
    gate:"Starter weapons · base spells",
@@ -55,7 +55,7 @@ const BOSSES = [
    tip:"<b>Grab the four armour pieces in the arena</b> for temporary invulnerability — then you can ignore the traps and focus Grayson. Unlocks Crimson Aegis + Whetstone.",
    reward:"Crimson Aegis · Whetstone"},
 
-  {act:1,lvl:27,name:"Goreswine the Ravager",epithet:"the poison cultist",loc:"Roaming · S Farbane (between graveyards)",ac:C.shadow,
+  {act:1,lvl:27,name:"Goreswine the Ravager",epithet:"the poison cultist",loc:"Roaming · S Farbane (between graveyards)",ac:C.shadow,tag:"First Veil",
    threat:"A mad cultist who <b>floods the floor with poison</b> and raises undead. Attrition through toxic zones.",
    weapon:"Crossbow — outrange the poison clouds",
    gate:"Hunter's Crossbow (Rufus) · starter melee",
@@ -66,7 +66,7 @@ const BOSSES = [
    tip:"<b>Use ranged attacks and keep moving</b> out of the poison. This is a key unlock — grants <b>Veil of Bones</b> and Bone Explosion (Corpse Explosion).",
    reward:"Veil of Bones · Bone Explosion · Tomb"},
 
-  {act:1,lvl:30,name:"Lidia the Chaos Archer",epithet:"the longbow roamer",loc:"Roaming · paths of Farbane (tracker)",ac:C.ember,
+  {act:1,lvl:30,name:"Lidia the Chaos Archer",epithet:"the longbow roamer",loc:"Roaming · paths of Farbane (tracker)",ac:C.ember,tag:"Chaos Volley",
    threat:"Fires <b>chaos arrows and AoE bombs</b> while roaming, so expect stray bandits and wolves to join in.",
    weapon:"Crossbow — trade shots, her arrows are slow",
    gate:"Hunter's Crossbow (Rufus)",
@@ -77,7 +77,7 @@ const BOSSES = [
    tip:"Her arrows travel slowly — <b>strafe and they miss.</b> Unlocks <b>Chaos Volley</b> (your first real nuke) + the Longbow and the Devourer.",
    reward:"Tier 1 Chaos (Chaos Volley / Power Surge / Aftershock) · Longbow · The Devourer"},
 
-  {act:1,lvl:30,name:"Clive the Firestarter",epithet:"the mad bomber",loc:"Static · Bandit Sulphur Quarry, W Farbane",ac:C.ember,
+  {act:1,lvl:30,name:"Clive the Firestarter",epithet:"the mad bomber",loc:"Static · Bandit Sulphur Quarry, W Farbane",ac:C.ember,tag:"Quincey Gate",
    threat:"Lobs <b>cluster bombs and charges leaving bomb trails</b> in a quarry full of explosive barrels that chain-react.",
    weapon:"Crossbow — ranged, and save your dash for the big bomb",
    gate:"Hunter's Crossbow (Rufus) · Chaos Volley (Lidia)",
@@ -88,7 +88,7 @@ const BOSSES = [
    tip:"<b>Destroy the barrels before engaging</b> so his bombs don't chain-kill you. Save Travel for the 8-bomb cluster. Grants <b>Veil of Chaos</b> (the double-dash, a huge upgrade) + the Alchemy Table and Explosive Box you need for Quincey.",
    reward:"Veil of Chaos · Alchemy Table · Minor Explosive Box"},
 
-  {act:1,lvl:30,name:"Nibbles the Putrid Rat",epithet:"the summoned vermin",loc:"Summoned · Vermin Nest (your castle)",ac:C.shadow,
+  {act:1,lvl:30,name:"Nibbles the Putrid Rat",epithet:"the summoned vermin",loc:"Summoned · Vermin Nest (your castle)",ac:C.shadow,tag:"Rat Form",tagKind:"form",
    threat:"Doesn't spawn in the world — <b>summoned at your Vermin Nest</b>. Easy boss, just swarmed by small rats chipping you.",
    weapon:"Any AoE weapon — Reaper/Greatsword once you have them, else Mace",
    gate:"Vermin Nest built · ingredients (Twilight Snapper, Fish Bone, Grave Dust)",
@@ -110,7 +110,7 @@ const BOSSES = [
    tip:"<b>Just bring him down</b> — minimal mechanics. Unlocks the Fishing Pole and a Frost spell point.",
    reward:"Tier 1 Frost point · Fishing Pole"},
 
-  {act:1,lvl:35,name:"Polora the Feywalker",epithet:"the fear-caster",loc:"Static · Gleaming Meadows, W Farbane",ac:C.shadow,
+  {act:1,lvl:35,name:"Polora the Feywalker",epithet:"the fear-caster",loc:"Static · Gleaming Meadows, W Farbane",ac:C.shadow,tag:"Waygate",
    threat:"A spirit-caster who <b>inflicts Fear</b> (forcing you to flee) and summons spectral wolves. The Fear prolongs the fight more than it hurts.",
    weapon:"Crossbow — chip her through the wolves",
    gate:"Hunter's Crossbow (Rufus) · Chaos Volley (Lidia)",
@@ -121,7 +121,7 @@ const BOSSES = [
    tip:"<b>Wait out the Fear</b> and re-engage. Grants <b>Veil of Illusion</b> + Spectral Wolf and the Vampire Waygate (teleport network).",
    reward:"Veil of Illusion · Spectral Wolf · Vampire Waygate"},
 
-  {act:1,lvl:35,name:"Kodia the Ferocious Bear",epithet:"the cave tank",loc:"Static · Bear Cave, E Farbane",ac:C.ember,
+  {act:1,lvl:35,name:"Kodia the Ferocious Bear",epithet:"the cave tank",loc:"Static · Bear Cave, E Farbane",ac:C.ember,tag:"Bear Form",tagKind:"form",
    threat:"One of the <b>tankiest early bosses</b> — wide paw swings and a slam that drops boulders from the ceiling across the arena.",
    weapon:"Crossbow or Mace — bring lots of healing",
    gate:"Copper weapons · Blood Rite (block)",
@@ -143,7 +143,7 @@ const BOSSES = [
    tip:"<b>AoE the skeletons down</b> and his attacks are easy to dodge. Grants <b>Ward of the Damned</b> + Pestilence and the Study (for scrolls).",
    reward:"Ward of the Damned · Study"},
 
-  {act:1,lvl:37,name:"Quincey the Bandit King",epithet:"the Act I gatekeeper",loc:"Static · Bandit Stronghold, N Farbane",ac:C.ember,
+  {act:1,lvl:37,name:"Quincey the Bandit King",epithet:"the Act I gatekeeper",loc:"Static · Bandit Stronghold, N Farbane",ac:C.ember,tag:"First Ultimate",
    threat:"The <b>Act I final boss</b> — shield bashes, a charge, and a phase-2 triple-dash combo. Fire plates cover the floor and chip you if you linger.",
    weapon:"Crossbow or Greatsword — punish his post-dash stun",
    gate:"Iron weapons · Veil of Chaos (Clive) · Explosive Box to breach the gate",
@@ -597,7 +597,7 @@ const BOSSES = [
    tip:"<b>Keep moving through the fire zones</b> and clear his constructs with cleave. Find him in the small western side room of the bastion. Unlocks the Fusion Forge for top-tier gear.",
    reward:"Tier 2 Frost (Crystal Lance / Frost Barrier) · Fusion Forge · Ember Glass"},
 
-  {act:4,lvl:84,name:"Lord Styx the Night Champion",epithet:"keeper of the Blood Key",loc:"Roaming · Dracula's Demise (central map)",ac:C.blood,
+  {act:4,lvl:84,name:"Lord Styx the Night Champion",epithet:"keeper of the Blood Key",loc:"Roaming · Dracula's Demise (central map)",ac:C.blood,tag:"Bat Form",tagKind:"form",
    threat:"A massive <b>blood-magic duel</b> — life-drain pools, blood waves, and summons. The gate to Mortium runs through him.",
    weapon:"Reaper or Greatsword — sustain + burst",
    gate:"Dark Silver melee · Veil of Blood (Beatrice) · Blood Rage (Rufus)",

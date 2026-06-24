@@ -67,7 +67,7 @@ function render(){
       const slug = slugify(b.name);
       card.id = slug;
       card.className='card'; card.dataset.act=act;
-      card.dataset.search = (b.name+' '+b.epithet+' '+b.loc+' '+b.weapon+' '+b.threat+' '+b.veil+' '+b.spells.join(' ')+' '+b.ult+' '+(b.altUlt||'')+' '+b.blood.map(x=>x[0]).join(' ')+' '+b.reward).toLowerCase();
+      card.dataset.search = (b.name+' '+b.epithet+' '+b.loc+' '+b.weapon+' '+b.threat+' '+b.veil+' '+b.spells.join(' ')+' '+b.ult+' '+(b.altUlt||'')+' '+b.blood.map(x=>x[0]).join(' ')+' '+b.reward+' '+(b.tag||'')).toLowerCase();
       card.style.setProperty('--accent', b.ac);
       card.innerHTML = `
         <div class="card-head">
@@ -75,6 +75,7 @@ function render(){
           <div class="card-title">
             <h3>${b.name}<a class="card-anchor" href="#${slug}" title="Copy link to this card"
               onclick="event.stopPropagation();navigator.clipboard?.writeText(location.origin+location.pathname+'#${slug}').catch(()=>{})">#</a></h3>
+            ${b.tag ? `<span class="boss-tag${b.tagKind?' '+b.tagKind:''}">${b.tag}</span>` : ''}
             <div class="epithet">${b.epithet}</div>
             <span class="loc">${b.loc}</span>
             <span class="card-reward">${b.reward}</span>
@@ -128,10 +129,10 @@ function buildCheatTable(){
       const ultHtml = none(b.ult) ? '—' : b.ult + (b.altUlt ? `<span class="ct-altult">alt: ${b.altUlt}</span>` : '');
       const tr = document.createElement('tr');
       tr.dataset.act = b.act;
-      tr.dataset.search = (b.name+' '+b.blood.map(x=>x[0]).join(' ')+' '+b.weapon+' '+b.loc).toLowerCase();
+      tr.dataset.search = (b.name+' '+b.blood.map(x=>x[0]).join(' ')+' '+b.weapon+' '+b.loc+' '+(b.tag||'')).toLowerCase();
       tr.innerHTML = `
         <td class="ct-gl">${b.lvl}</td>
-        <td class="ct-name"><a href="#${slug}">${b.name}</a></td>
+        <td class="ct-name"><a href="#${slug}">${b.name}</a>${b.tag?`<span class="ct-tag${b.tagKind?' '+b.tagKind:''}">${b.tag}</span>`:''}</td>
         <td>${bloodHtml}</td>
         <td>${weaponShort}</td>
         <td>${veilShort}</td>

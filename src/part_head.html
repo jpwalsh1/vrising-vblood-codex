@@ -324,6 +324,18 @@
   .cheat-btn:hover{color:var(--parchment);border-color:var(--bone-dim)}
   .cheat-btn.active{background:var(--stone);border-color:var(--gold);color:var(--gold)}
 
+  /* ---------- BOSS TAG BADGE ---------- */
+  .boss-tag{
+    display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.5rem;
+    letter-spacing:.18em;text-transform:uppercase;padding:.12rem .5rem;
+    border-radius:2px;margin:.18rem 0 .1rem;line-height:1.6;
+    border:1px solid rgba(201,162,75,.35);color:var(--gold);
+    background:rgba(201,162,75,.07);
+  }
+  .boss-tag.form{
+    border-color:rgba(155,111,196,.4);color:#cdb0ec;background:rgba(155,111,196,.09);
+  }
+
   /* ---------- CARD ANCHOR LINK ---------- */
   .card-anchor{
     display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.68rem;
@@ -368,6 +380,8 @@
   .cheat-table .ct-name a{color:var(--parchment);font-weight:600;text-decoration:none}
   .cheat-table .ct-name a:hover{color:var(--gold)}
   .cheat-table .ct-altult{display:block;font-size:.75rem;color:var(--bone-dim);margin-top:.15rem;font-style:italic}
+  .cheat-table .ct-tag{display:block;font-size:.62rem;color:var(--gold);opacity:.7;margin-top:.12rem;font-family:'JetBrains Mono',monospace;letter-spacing:.1em}
+  .cheat-table .ct-tag.form{color:#cdb0ec;opacity:.8}
 
   /* ---------- MOBILE TWEAKS ---------- */
   @media(max-width:400px){
