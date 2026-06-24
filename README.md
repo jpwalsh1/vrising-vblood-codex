@@ -1,5 +1,8 @@
 # V Rising V Blood Codex
 
+**Live site:** https://jpwalsh1.github.io/vrising-vblood-codex/
+
+
 A dark-themed, single-page reference for every V Blood boss in **V Rising** (patch 1.1, *Invaders of Oakveil*), from the first wolf in Farbane Woods to Dracula in Mortium. Each boss card gives a fight summary plus a recommended loadout — weapon, blood type, movement veil, two spells, and an ultimate — using **only abilities you would already have unlocked when you reach that boss**.
 
 62 bosses across four acts plus the Mortium endgame.
