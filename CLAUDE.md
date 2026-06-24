@@ -100,18 +100,25 @@ GitHub Pages serves `main` branch root, so every push to `main` auto-deploys.
 
 Roughly priority-ordered. Ask before starting any of these.
 
+### Completed
+
+- ~~**Printable / cheat-sheet view**~~ — done. Toggle button + `@media print` landscape table.
+- ~~**Shareable card anchor links**~~ — done. `#slug` on each card, clipboard copy, hash routing.
+- ~~**Act I utility-boss annotations**~~ — done. Gold/amber gate chips + purple form-unlock chips on 10 bosses.
+- ~~**Blood-type colour tinting**~~ — done. `BT_CLASS` map + coloured spans on all blood entries.
+- ~~**Alternate-ultimate notes**~~ — done. `altUlt` field on 12 bosses, shown as small alt pill.
+- ~~**Unlock reward preview**~~ — done. Collapsed card header shows reward line in gold monospace.
+- ~~**Mobile card layout tweak**~~ — done. Sub-400px tweaks: hide reward preview, tighten header padding.
+
 ### Ready to build
 
-- **Printable / cheat-sheet view** — compact table layout (one row per boss: name, level,
-  weapon, blood, spells) that prints cleanly. CSS `@media print` + a toggle button.
-  No new data needed.
-
-- **Shareable card anchor links** — `#boss-name` slugs on each card so you can link
-  directly to e.g. the Dracula card. Simple URL hash routing, no framework needed.
-
-- **Act I utility-boss annotations** — some early kills are more about unlocking forms
-  (Wolf, Bear, Bat) than combat. A small "form unlock" badge or annotation on those
-  cards would help new players prioritise.
+- **Per-card loadout builder** — spell/veil/ult slots become clickable dropdowns showing all
+  progression-legal options for that boss's gear level. Existing card data is the default/starter
+  build. No login; state persists via `localStorage` keyed by boss slug. Each card becomes a
+  lightweight planner the player can tweak. Design questions to resolve before building: which
+  slots are editable (all? spells + ult only?), how to surface the full ability list per slot,
+  whether to show a "reset to default" affordance, and how the cheat-sheet table reflects
+  customised builds.
 
 ### Needs research / data work
 
@@ -130,6 +137,3 @@ Roughly priority-ordered. Ask before starting any of these.
 - **Dark/light mode toggle** — currently dark-only. Low priority for a game-reference page.
 
 - **Filter by blood type** — add blood-type filter buttons alongside the act filters.
-
-- **Mobile card layout tweak** — the kit rows stack on narrow screens but the reward
-  preview line can overflow. Worth a pass on sub-400px viewports.
