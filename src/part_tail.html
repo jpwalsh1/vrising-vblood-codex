@@ -99,6 +99,7 @@ function render(){
         </div>
         <div class="card-body"><div class="card-body-inner">
           <p class="threat">${b.threat}</p>
+          ${b.brutal ? `<div class="brutal-note"><span class="brutal-label">Brutal ★</span>${b.brutal}</div>` : ''}
           ${kitRows(b)}
           <div class="gate"><span class="glabel">Gear you'll already have here</span>${b.gate}</div>
           <div class="tip">${b.tip}</div>

@@ -9,6 +9,7 @@ const BOSSES = [
    spells:["Blood Rite","—"],
    ult:"—",
    tip:"<b>Use tree collision to trap it</b> — corner it against trunks so it can't circle. Unlocks Wolf Form for faster travel.",
+   brutal:"Chains charges without pause and gains a <b>jump-grab</b> that pins you with follow-up bites.",
    reward:"Wolf Form"},
 
   {act:1,lvl:20,name:"Keely the Frost Archer",epithet:"the trapper",loc:"Static · Bandit Trapper Camp, E Farbane",ac:C.frost,
@@ -20,6 +21,7 @@ const BOSSES = [
    spells:["Blood Rite","—"],
    ult:"—",
    tip:"<b>Lean on your travel dash</b> to close the gap, and clear the camp adds first. Unlocks the Tannery (leather) + Frost Bat.",
+   brutal:"Gains a cloak-explosion that detonates at your current position, not hers — moving mid-cloak is the tell.",
    reward:"Tier 1 Frost (Frost Bat / Cold Snap / Ice Nova) · Tannery"},
 
   {act:1,lvl:20,name:"Rufus the Foreman",epithet:"the crossbow boss",loc:"Static · Bandit Logging Camp, C Farbane",ac:C.blood,tag:"Crossbow Unlock",
@@ -31,6 +33,7 @@ const BOSSES = [
    spells:["Blood Rite","—"],
    ult:"—",
    tip:"<b>Clear the camp first</b> so the bandits don't interfere, then pressure Rufus directly. Unlocks Blood Rage + the Woodworking Bench and Hunter's Crossbow recipe.",
+   brutal:"Gains a <b>Rain of Arrows</b> attack not present on Normal. Stay mobile.",
    reward:"Blood Rage · Woodworking Bench · Hunter's Crossbow"},
 
   {act:1,lvl:20,name:"Errol the Stonebreaker",epithet:"the hammer in the mine",loc:"Static · Bandit Copper Mine, C Farbane",ac:C.ember,
@@ -42,6 +45,7 @@ const BOSSES = [
    spells:["Blood Rite","—"],
    ult:"—",
    tip:"<b>Kill the miners first</b>, then keep distance — his slow movement lets you outrange the Aftershock entirely. Unlocks Aftershock + the Big Stash.",
+   brutal:"His ground-slam gains an immediate large AoE directly beneath him on trigger — don't stand under him.",
    reward:"Aftershock · Big Stash"},
 
   {act:1,lvl:27,name:"Grayson the Armourer",epithet:"the trap-layer",loc:"Static · Bandit Armoury, W-C Farbane",ac:C.blood,
@@ -53,6 +57,7 @@ const BOSSES = [
    spells:["Blood Rite","—"],
    ult:"—",
    tip:"<b>Grab the four armour pieces in the arena</b> for temporary invulnerability — then you can ignore the traps and focus Grayson. Unlocks Crimson Aegis + Whetstone.",
+   brutal:"Fires more projectiles on his grab attack. Stat scaling otherwise.",
    reward:"Crimson Aegis · Whetstone"},
 
   {act:1,lvl:27,name:"Goreswine the Ravager",epithet:"the poison cultist",loc:"Roaming · S Farbane (between graveyards)",ac:C.shadow,tag:"First Veil",
@@ -64,6 +69,7 @@ const BOSSES = [
    spells:["Blood Rite","—"],
    ult:"—",
    tip:"<b>Use ranged attacks and keep moving</b> out of the poison. This is a key unlock — grants <b>Veil of Bones</b> and Bone Explosion (Corpse Explosion).",
+   brutal:"Skulls bounce and leave poison puddles; killing each summoned Priest also kills all skeletons it raised.",
    reward:"Veil of Bones · Bone Explosion · Tomb"},
 
   {act:1,lvl:30,name:"Lidia the Chaos Archer",epithet:"the longbow roamer",loc:"Roaming · paths of Farbane (tracker)",ac:C.ember,tag:"Chaos Volley",
@@ -75,6 +81,7 @@ const BOSSES = [
    spells:["Spectral Wolf","—"],
    ult:"—",
    tip:"Her arrows travel slowly — <b>strafe and they miss.</b> Unlocks <b>Chaos Volley</b> (your first real nuke) + the Longbow and the Devourer.",
+   brutal:"Fires 5 shots instead of 3, tracks faster, and gains an unlisted <b>Time to Take a Chance</b> ability.",
    reward:"Tier 1 Chaos (Chaos Volley / Power Surge / Aftershock) · Longbow · The Devourer"},
 
   {act:1,lvl:30,name:"Clive the Firestarter",epithet:"the mad bomber",loc:"Static · Bandit Sulphur Quarry, W Farbane",ac:C.ember,tag:"Quincey Gate",
@@ -86,6 +93,7 @@ const BOSSES = [
    spells:["Chaos Volley","Spectral Wolf"],
    ult:"—",
    tip:"<b>Destroy the barrels before engaging</b> so his bombs don't chain-kill you. Save Travel for the 8-bomb cluster. Grants <b>Veil of Chaos</b> (the double-dash, a huge upgrade) + the Alchemy Table and Explosive Box you need for Quincey.",
+   brutal:"Gains a <b>Sticky Bomb</b> — thrown in a straight line, adheres to the player, and detonates on a delay.",
    reward:"Veil of Chaos · Alchemy Table · Minor Explosive Box"},
 
   {act:1,lvl:30,name:"Nibbles the Putrid Rat",epithet:"the summoned vermin",loc:"Summoned · Vermin Nest (your castle)",ac:C.shadow,tag:"Rat Form",tagKind:"form",
@@ -97,6 +105,7 @@ const BOSSES = [
    spells:["Chaos Volley","—"],
    ult:"—",
    tip:"<b>AoE the small rats</b> as they spawn and Nibbles falls fast. Pure unlock fight — grants Rat Form for stealth.",
+   brutal:"Stat scaling only — higher HP and 75% more damage, no new mechanics.",
    reward:"Rat Form"},
 
   {act:1,lvl:32,name:"Finn the Fisherman",epithet:"the lakeside hermit",loc:"Static · Fishing Lake, NE Farbane",ac:C.frost,
@@ -108,6 +117,7 @@ const BOSSES = [
    spells:["Chaos Volley","Spectral Wolf"],
    ult:"—",
    tip:"<b>Just bring him down</b> — minimal mechanics. Unlocks the Fishing Pole and a Frost spell point.",
+   brutal:"Stat scaling only — higher HP and 75% more damage, no new mechanics.",
    reward:"Tier 1 Frost point · Fishing Pole"},
 
   {act:1,lvl:35,name:"Polora the Feywalker",epithet:"the fear-caster",loc:"Static · Gleaming Meadows, W Farbane",ac:C.shadow,tag:"Waygate",
@@ -119,6 +129,7 @@ const BOSSES = [
    spells:["Chaos Volley","Spectral Wolf"],
    ult:"—",
    tip:"<b>Wait out the Fear</b> and re-engage. Grants <b>Veil of Illusion</b> + Spectral Wolf and the Vampire Waygate (teleport network).",
+   brutal:"Gains a full-arena AoE ball, doubles moth spawns, and <b>heals herself</b> if any of her adds touch your summons or servants.",
    reward:"Veil of Illusion · Spectral Wolf · Vampire Waygate"},
 
   {act:1,lvl:35,name:"Kodia the Ferocious Bear",epithet:"the cave tank",loc:"Static · Bear Cave, E Farbane",ac:C.ember,tag:"Bear Form",tagKind:"form",
@@ -130,6 +141,7 @@ const BOSSES = [
    spells:["Chaos Volley","Spectral Wolf"],
    ult:"—",
    tip:"<b>Use Blood Rite to block his swings</b> and recover health. Dodge the falling boulders during his slam. Grants Bear Form — needed to break into Quincey's stronghold.",
+   brutal:"Summons additional bears mid-fight; chains multi-charges without the fatigue pause.",
    reward:"Bear Form · Fur Rugs"},
 
   {act:1,lvl:37,name:"Nicholaus the Fallen",epithet:"the graveyard necromancer",loc:"Static · Forgotten Cemetery, C Farbane",ac:C.shadow,
@@ -141,6 +153,7 @@ const BOSSES = [
    spells:["Chaos Volley","Spectral Wolf"],
    ult:"—",
    tip:"<b>AoE the skeletons down</b> and his attacks are easy to dodge. Grants <b>Ward of the Damned</b> + Pestilence and the Study (for scrolls).",
+   brutal:"His teleport now spawns a <b>ring of skull projectiles</b> at the landing point — clear the landing zone.",
    reward:"Ward of the Damned · Study"},
 
   {act:1,lvl:37,name:"Quincey the Bandit King",epithet:"the Act I gatekeeper",loc:"Static · Bandit Stronghold, N Farbane",ac:C.ember,tag:"First Ultimate",
@@ -152,6 +165,7 @@ const BOSSES = [
    spells:["Chaos Volley","Spectral Wolf"],
    ult:"—",
    tip:"<b>After his 3-dash combo he stuns himself</b> — that's your big damage window. Avoid the fire plates. Reach him via Bear Form's Crush or a Minor Explosive Box on the gate. Grants Chaos Barrage / Merciless Charge — your first ultimates — plus the Smithy.",
+   brutal:"Throws a fast axe when you stay at range; chains his triple-dash without pause.",
    reward:"Tier 3 Chaos (Chaos Barrage / Merciless Charge) · Smithy · Tailoring Bench"},
 
   // ============ ACT II ============
@@ -164,6 +178,7 @@ const BOSSES = [
    spells:["Cold Snap","Spectral Wolf"],
    ult:"Chaos Barrage",
    tip:"<b>Blood Hunt before entering the village</b> to track her exact route. Beeline straight to Beatrice — freeze her with Cold Snap, use Spectral Wolf to stall militia, and drain fast. On Brutal, stay mobile when the Gargoyle phase triggers.",
+   brutal:"Transforms into a <b>Gargoyle at ~50% HP</b> — dash attacks, a forward leap, and a Chaotic Landing AoE replace her flee behavior.",
    reward:"Veil of Blood · Loom — unlocks cloth and cotton-yarn crafting for Act II gear"},
 
   {act:2,lvl:44,name:"Tristan the Vampire Hunter",epithet:"the relentless pursuer",loc:"Roaming · N Farbane roads",ac:C.ember,
@@ -176,6 +191,7 @@ const BOSSES = [
    ult:"Chaos Barrage",
    altUlt:"Merciless Charge",
    tip:"<b>The 50% Whirlwind is the kill window — don't flee, orbit it.</b> He's predictable once spinning; dash in behind him and drop Chaos Barrage when he finishes. Block or sidestep his Lunge; never dodge backwards.",
+   brutal:"His Whirlwind phase lasts ~10 seconds, resets every ~20s, and is fast enough to outpace Wolf Form — it can kill from full HP in one rotation. Don't get caught inside.",
    reward:"Greater Blood Essence (recipe) · Greatsword (recipe) · Blood Hunger power"},
 
   {act:2,lvl:44,name:"Vincent the Frostbringer",epithet:"the militia captain on the road",loc:"Roaming · Dunley Farmlands",ac:C.frost,
@@ -187,6 +203,7 @@ const BOSSES = [
    spells:["Chaos Volley","Spectral Wolf"],
    ult:"Heart Strike",altUlt:"Chaos Barrage",
    tip:"<b>Kill the crossbow lackeys first</b>, then never eat a frost missile while exposed. Veil of Blood out of the freeze if you get clipped.",
+   brutal:"Significantly more aggressive — a major Brutal difficulty spike. Treat every freeze as a death sentence and play defensively.",
    reward:"Veil of Frost · Frost Barrier · Prison Cell"},
 
   {act:2,lvl:44,name:"Christina the Sun Priestess",epithet:"radiance of the chapel",loc:"Roaming · Dawnbreak / Mosswick churches",ac:C.holy,
@@ -198,6 +215,7 @@ const BOSSES = [
    spells:["Chaos Volley","Spectral Wolf"],
    ult:"Chaos Barrage",
    tip:"<b>Keep circling.</b> Her orbs track but turn slowly — strafe wide and they fizzle on the walls. Spectral Wolf (from Polora) draws aggro off you.",
+   brutal:"Her heal <b>cannot be interrupted on Brutal</b> — on Normal you can cut it short; here it always completes.",
    reward:"Tier 2 Spell Point (Illusion) · Candle recipes"},
 
   {act:2,lvl:46,name:"Sir Erwin the Gallant Cavalier",epithet:"the mounted knight (Oakveil)",loc:"Static · Horse Racing Track, W Dunley",ac:C.storm,
@@ -209,6 +227,7 @@ const BOSSES = [
    spells:["Chaos Volley","Spectral Wolf"],
    ult:"Merciless Charge",
    tip:"Bait the charge, <b>dodge perpendicular</b>, then hit his flank before he wheels around.",
+   brutal:"Stat scaling only — no confirmed Brutal-exclusive mechanics for this Oakveil boss.",
    reward:"Stables · horse management"},
 
   {act:2,lvl:47,name:"Kriig the Undead General",epithet:"the risen captain",loc:"Static · Haunted Iron Mine, Dunley",ac:C.shadow,
@@ -220,6 +239,7 @@ const BOSSES = [
    spells:["Chaos Volley","Spectral Wolf"],
    ult:"Chaos Barrage",
    tip:"<b>Thin the adds with greatsword cleave</b>, then commit to the General. Spectral Wolf (from Polora) can soak the archers.",
+   brutal:"Stat scaling only — higher HP and 75% more damage, no new mechanics.",
    reward:"Iron Reaper · Corrupted Skull · Bone Explosion · Ward of the Damned"},
 
   {act:2,lvl:47,name:"Leandra the Shadow Priestess",epithet:"the scourge-caller",loc:"Static · Church of the Damned, Dunley",ac:C.shadow,
@@ -231,6 +251,7 @@ const BOSSES = [
    spells:["Chaos Volley","Spectral Wolf"],
    ult:"Heart Strike",
    tip:"Ignore the skeletons — <b>chase Leandra's teleport pattern</b> and burst her between casts. (Veil of Bones isn't yours yet; that comes from Bane.)",
+   brutal:"Stat scaling only — higher HP and 75% more damage, no new mechanics.",
    reward:"Tier 1 Spell Point (Unholy) · Artisan Table"},
 
   {act:2,lvl:47,name:"Maja the Dark Savant",epithet:"the spectral scholar",loc:"Static · Forbidden Tower, Dunley",ac:C.shadow,
@@ -242,6 +263,7 @@ const BOSSES = [
    spells:["Spectral Wolf","Chaos Volley"],
    ult:"Heart Strike",
    tip:"Don't waste cooldowns into her <b>phantom shield</b> — wait it out, then dump everything. Spectral Wolf (Polora) draws aggro and gives you free damage windows.",
+   brutal:"Ink Blob spawns an add only on a direct hit; <b>~10 minions flood in at 50% HP</b>; three flying books patrol fixed orbits throughout the arena.",
    reward:"Study unlock · Midnight Armour Set"},
 
   {act:2,lvl:50,name:"Bane the Shadowblade",epithet:"the open-road duelist",loc:"Roaming · Dunley Farmlands",ac:C.shadow,
@@ -253,6 +275,7 @@ const BOSSES = [
    spells:["Corrupted Skull","Ward of the Damned"],
    ult:"Heart Strike",altUlt:"Chaos Barrage",
    tip:"<b>Punish his dash recovery.</b> He's brittle — out-trade him and the fight is short. Corrupted Skull (from Kriig) chips him between dashes.",
+   brutal:"Stat scaling only — higher HP and 75% more damage, no new mechanics.",
    reward:"Veil of Bones · Human Form · Daggers"},
 
   {act:2,lvl:50,name:"Grethel the Glassblower",epithet:"the molten artisan",loc:"Static · Gleaming Meadows, Dunley",ac:C.ember,
@@ -264,6 +287,7 @@ const BOSSES = [
    spells:["Corrupted Skull","Chaos Volley"],
    ult:"Chaos Barrage",
    tip:"<b>Treat the floor as lava.</b> Reposition every few seconds and she can never corner you. If you've already killed Bane, Veil of Bones is a better escape here.",
+   brutal:"Stat scaling only — higher HP and 75% more damage, no new mechanics.",
    reward:"Tier 1 Spell Point (Storm) · Wall Mirror recipes"},
 
   {act:2,lvl:52,name:"Meredith the Bright Archer",epithet:"the holy volley",loc:"Static · Haunted Iron Mines, Dunley",ac:C.holy,
@@ -275,6 +299,7 @@ const BOSSES = [
    spells:["Corrupted Skull","Ward of the Damned"],
    ult:"Heart Strike",
    tip:"<b>Stick to her hip.</b> Deny her distance and she crumbles. Drop Ward of the Damned (from Kriig) when she opens a volley. Unlocks the Holy Resistance Potion.",
+   brutal:"Stat scaling only — higher HP and 75% more damage, no new mechanics.",
    reward:"Veil of Storm · Holy Resistance Potion"},
 
   {act:2,lvl:53,name:"Terah the Geomancer",epithet:"the stone-shaper",loc:"Static · Bedrock Pass, NW Dunley",ac:C.ember,
@@ -286,6 +311,7 @@ const BOSSES = [
    spells:["Chaos Volley","Corrupted Skull"],
    ult:"Chaos Barrage",
    tip:"<b>Keep distance and use ranged abilities</b> — she's built to punish melee that gets walled in.",
+   brutal:"Stat scaling only — higher HP and 75% more damage, no new mechanics.",
    reward:"Tier 3 Spell Point (Illusion) · Gem Cutting Table"},
 
   {act:2,lvl:53,name:"General Elena the Hollow",epithet:"the frostbound general",loc:"Roaming · paths of Dunley",ac:C.frost,
@@ -297,6 +323,7 @@ const BOSSES = [
    spells:["Corrupted Skull","Ward of the Damned"],
    ult:"Heart Strike",
    tip:"<b>Save your veil for her rush.</b> Get caught frozen and the follow-up barrage hurts. Veil of Frost (from Vincent) is the cleanest escape here.",
+   brutal:"Stat scaling only — higher HP and 75% more damage, no new mechanics.",
    reward:"Tier 2 Spell Point (Frost) · Passive Slot · Stygian Awakening"},
 
   {act:2,lvl:53,name:"Frostmaw the Mountain Terror",epithet:"the alpha of the peaks",loc:"Roaming · Hallowed Mountains",ac:C.frost,
@@ -308,6 +335,7 @@ const BOSSES = [
    spells:["Corrupted Skull","Ward of the Damned"],
    ult:"Heart Strike",
    tip:"<b>Fight him at night and near ramps</b> — the elevation breaks his leap pathing. Dodge into him as he lands, never away. Unlocks the Claws weapon + T3 Frost ultimates.",
+   brutal:"Stat scaling only — higher HP and 75% more damage, no new mechanics.",
    reward:"Tier 3 Frost (Arctic Leap / Ice Block) · Claws · Mountain Peak Bag"},
 
   {act:2,lvl:55,name:"Gaius the Cursed Champion",epithet:"the colosseum beast (Oakveil)",loc:"Static · Colosseum, NE Dunley",ac:C.blood,
@@ -319,6 +347,7 @@ const BOSSES = [
    spells:["Corrupted Skull","Ward of the Damned"],
    ult:"Heart Strike",
    tip:"The arena is small — <b>dodge through him, not away.</b> Punish the long recovery on his leap slam.",
+   brutal:"Stat scaling only — Brutal-specific mechanics unconfirmed for this Oakveil boss.",
    reward:"Iron Twinblade · Corrupted Skull · Arena Station"},
 
   {act:2,lvl:57,name:"General Cassius the Betrayer",epithet:"the fallen paladin",loc:"Roaming · Ruins of Mortium",ac:C.shadow,
@@ -330,6 +359,7 @@ const BOSSES = [
    spells:["Corrupted Skull","Ward of the Damned"],
    ult:"Heart Strike",
    tip:"<b>Kill the Nightfall Edge, grab the downed sword, throw it back</b> to stun him — then unload while he's floored.",
+   brutal:"Stat scaling only — higher HP and 75% more damage, no new mechanics.",
    reward:"Tier 2 Unholy · Stygian Summoning Circle"},
 
   {act:2,lvl:57,name:"Jade the Vampire Hunter",epithet:"the gunslinger",loc:"Roaming · Dunley Farmlands",ac:C.ember,
@@ -341,6 +371,7 @@ const BOSSES = [
    spells:["Corrupted Skull","Ward of the Damned"],
    ult:"Heart Strike",
    tip:"<b>Dodge into her, not away.</b> Her whole kit assumes you're running — closing the gap breaks her rhythm.",
+   brutal:"Basic shot can inflict <b>Silence</b>; chains 3 rapid sniper shots in succession; can use her ultimate twice in a row.",
    reward:"Pistols · Tier 1 Chaos spell point · Primal Blood Essence"},
 
   {act:2,lvl:57,name:"Raziel the Shepherd",epithet:"the healing priest",loc:"Static · Dunley Monastery (Holy Resist req.)",ac:C.holy,
@@ -352,6 +383,7 @@ const BOSSES = [
    spells:["Corrupted Skull","Ward of the Damned"],
    ult:"Heart Strike",
    tip:"<b>Bring a Holy Resistance Potion</b> (craftable after Meredith) just to reach him. Then burst hard — slow DPS loses to his heals.",
+   brutal:"Stat scaling only — higher HP and 75% more damage, no new mechanics.",
    reward:"Tier 2 Blood (Sanguine Coil) · Jewelcrafting Table"},
 
   {act:2,lvl:58,name:"Octavian the Militia Captain",epithet:"the dark silver gate",loc:"Static · Bastion of Dunley",ac:C.frost,
@@ -363,6 +395,7 @@ const BOSSES = [
    spells:["Corrupted Skull","Ward of the Damned"],
    ult:"Heart Strike",
    tip:"<b>Go melee.</b> Mirror Strike turns your own arrows on you. Gates Dark Silver weapons + the Ancestral Forge — don't skip him.",
+   brutal:"Enrage phase replaces his dash-strike with a series of rapid <b>multi-jumps</b>.",
    reward:"Dark Silver Ingot · Anvil · Ancestral Forge · Tier 3 Storm"},
 
   // ============ ACT III ============
@@ -375,6 +408,7 @@ const BOSSES = [
    spells:["Chaos Volley","Corrupted Skull"],
    ult:"Chaos Barrage",
    tip:"<b>Prioritise the turrets</b> — leave them up and the chip damage snowballs. Unlocks the Fabricator.",
+   brutal:"Dense <b>bullet-hell</b> on Brutal — destroy all weapon emplacements immediately to cut projectile density.",
    reward:"Fabricator · Tier 2 Storm · Yellow Teleporter"},
 
   {act:3,lvl:60,name:"Domina the Blade Dancer",epithet:"the storm whip",loc:"Static · Rustlock Village, Gloomrot",ac:C.storm,
@@ -386,6 +420,7 @@ const BOSSES = [
    spells:["Corrupted Skull","Ward of the Damned"],
    ult:"Heart Strike",
    tip:"<b>Don't get pulled into the curtains.</b> Stay outside her tendril range and punish the recovery. (Her Iron Whip is the reward, not your tool.)",
+   brutal:"Gains a <b>whip-pull</b> that drags you into melee range, then detonates an explosion circle around herself.",
    reward:"Iron Whip · Tier 2 Storm · Castle Teleporter"},
 
   {act:3,lvl:61,name:"Angram the Purifier",epithet:"the irradiated zealot",loc:"Static · Pools of Rebirth, Gloomrot",ac:C.ember,
@@ -397,6 +432,7 @@ const BOSSES = [
    spells:["Chaos Volley","Corrupted Skull"],
    ult:"Chaos Barrage",altUlt:"Merciless Charge",
    tip:"His <b>charge is the whole fight</b> — sidestep it, hit the recovery, repeat. Veil of Chaos (from Clive) ignites him on the dash-out.",
+   brutal:"Can use other abilities <b>while shielded</b> — on Normal the shield phase is his only action.",
    reward:"Tier 3 Chaos · Dawnthorn Armour Set"},
 
   {act:3,lvl:63,name:"Ungora the Spider Queen",epithet:"the brood mother",loc:"Static · Spider Cave, W Cursed Forest",ac:C.shadow,
@@ -408,6 +444,7 @@ const BOSSES = [
    spells:["Corrupted Skull","Ward of the Damned"],
    ult:"Heart Strike",
    tip:"<b>AoE the spiderlings down</b> before they stack. Drop Ward when webbed to block the punish.",
+   brutal:"Breaking all cocoons requires <b>two full fight cycles</b> rather than one.",
    reward:"Spider Form · Army of the Dead · Silk"},
 
   {act:3,lvl:63,name:"Ben the Old Wanderer",epithet:"the roaming hermit",loc:"Roaming · Cursed Forest roads",ac:C.frost,
@@ -419,6 +456,7 @@ const BOSSES = [
    spells:["Corrupted Skull","Ward of the Damned"],
    ult:"Heart Strike",
    tip:"<b>Clear his wisps first</b> or they peck you to death while you focus Ben.",
+   brutal:"His Monstrosity can be baited out early; it <b>persists on the map</b> even after Ben re-despawns, which can be used strategically.",
    reward:"Tier 2 Frost · Shroud of the Forest"},
 
   {act:3,lvl:63,name:"Foulrot the Soultaker",epithet:"the banshee binder",loc:"Static · Forgotten Cemetery, Cursed Forest",ac:C.shadow,
@@ -430,6 +468,7 @@ const BOSSES = [
    spells:["Corrupted Skull","Ward of the Damned"],
    ult:"Heart Strike",
    tip:"<b>Don't stand in the DoT.</b> His drain plus floor damage is what kills — keep moving and cleaving. Death Knight is his reward, not yet your tool.",
+   brutal:"Stat scaling only — Brutal-specific mechanic unconfirmed by community sources.",
    reward:"Tier 2 Unholy (Death Knight / Soulburn) · Banshee"},
 
   {act:3,lvl:64,name:"Albert the Duke of Balaton",epithet:"the toad-cursed noble",loc:"Static · Gloomrot region",ac:C.ember,
@@ -441,6 +480,7 @@ const BOSSES = [
    spells:["Chaos Volley","Corrupted Skull"],
    ult:"Chaos Barrage",
    tip:"<b>Map the safe tiles.</b> His poison spreads — pre-plan where you'll stand before it fills in.",
+   brutal:"Stat scaling only — higher HP and 75% more damage, no new mechanics.",
    reward:"Toad Form · Coin recipes"},
 
   {act:3,lvl:64,name:"Willfred the Village Elder",epithet:"the werewolf chief",loc:"Static · Gloomgrave Village, Dunley",ac:C.blood,
@@ -452,6 +492,7 @@ const BOSSES = [
    spells:["Corrupted Skull","Ward of the Damned"],
    ult:"Heart Strike",
    tip:"His <b>leaps are telegraphed</b> — sidestep and punish the landing. Unlocks the Silver Resistance Potion you'll need for holy zones.",
+   brutal:"Stat scaling only — higher HP and 75% more damage, no new mechanics.",
    reward:"Tier 3 Blood (Heart Strike) · Silver Resistance Potion"},
 
   {act:3,lvl:65,name:"Cyril the Cursed Smith",epithet:"the forge-tyrant",loc:"Static · Cursed Village, Cursed Forest",ac:C.ember,
@@ -463,6 +504,7 @@ const BOSSES = [
    spells:["Corrupted Skull","Ward of the Damned"],
    ult:"Heart Strike",
    tip:"His <b>slams are heavily telegraphed</b> — dodge in, get two or three hits, dodge out. Patience wins. Grants Veil of Illusion + Advanced Furnace.",
+   brutal:"Stat scaling only — higher HP and 75% more damage, no new mechanics.",
    reward:"Veil of Illusion · Anvil · Advanced Furnace"},
 
   // ============ ACT IV ============
@@ -475,6 +517,7 @@ const BOSSES = [
    spells:["Corrupted Skull","Ward of the Damned"],
    ult:"Heart Strike",
    tip:"<b>Clear his soldiers first</b> — fighting Magnus and the guard at once is what overwhelms you. Bring Silver Resistance for the approach.",
+   brutal:"Stat scaling only — higher HP and 75% more damage, no new mechanics.",
    reward:"Phantom's Veil · Tier 1 Frost · Wide Storage"},
 
   {act:4,lvl:70,name:"Baron du Bouchon the Sommelier",epithet:"the wine-cellar brawler",loc:"Static · Brighthaven Vineyards, Silverlight",ac:C.blood,
@@ -486,6 +529,7 @@ const BOSSES = [
    spells:["Corrupted Skull","Ward of the Damned"],
    ult:"Heart Strike",
    tip:"<b>The barrels are the whole fight</b> — dodge or destroy the rolling waves, and don't hit him during his Counter stance (it reflects). One of the easier GL70 bosses once you read the barrels. Clear the vineyard mobs outside first.",
+   brutal:"Stat scaling only — higher HP and 75% more damage, no new mechanics.",
    reward:"Tier 2 Blood (Blood Fountain / Sanguine Coil / Carrion Swarm) · Barrel Disguise · Blood Merlot"},
 
   {act:4,lvl:70,name:"Mairwyn the Elementalist",epithet:"the storm-caller",loc:"Static · Emberleaf Grove, S Silverlight",ac:C.storm,
@@ -497,6 +541,7 @@ const BOSSES = [
    spells:["Chaos Volley","Corrupted Skull"],
    ult:"Chaos Barrage",
    tip:"<b>Learn the element tells.</b> Each school telegraphs differently — react to the cast, not the boss. Unlocks the Holy Resistance Flask for the Solarus/Azariel zones.",
+   brutal:"Stat scaling only — higher HP and 75% more damage, no new mechanics.",
    reward:"Tier 1 Storm · Holy Resistance Flask"},
 
   {act:4,lvl:70,name:"Morian the Stormwing Matriarch",epithet:"the harpy queen",loc:"Static · Silverlight Hills",ac:C.storm,
@@ -508,6 +553,7 @@ const BOSSES = [
    spells:["Chaos Volley","Corrupted Skull"],
    ult:"Chaos Barrage",
    tip:"<b>Ranged build strongly preferred</b> — melee idles while she flies. Pistols (from Jade) shine here; punish her landing.",
+   brutal:"Stat scaling only — higher HP and 75% more damage, no new mechanics.",
    reward:"Tier 1 Chaos · Flawless Gem recipes"},
 
   {act:4,lvl:74,name:"Henry Blackbrew the Doctor",epithet:"the mad chemist",loc:"Static · Transcendum Laboratories, Gloomrot",ac:C.storm,
@@ -519,6 +565,7 @@ const BOSSES = [
    spells:["Corrupted Skull","Ward of the Damned"],
    ult:"Heart Strike",altUlt:"Army of the Dead",
    tip:"<b>Pace yourself.</b> Save defensive cooldowns for phase transitions where he combines mechanics. Grants the Athenaeum + Schematic crafting.",
+   brutal:"Stat scaling only — higher HP and 75% more damage, no new mechanics.",
    reward:"Tier 3 Storm · Athenaeum · Schematic"},
 
   {act:4,lvl:75,name:"Jakira the Shadow Huntress",epithet:"the dual-blade stalker",loc:"Roaming · Southern Oakveil Woodlands",ac:C.shadow,
@@ -530,6 +577,7 @@ const BOSSES = [
    spells:["Corrupted Skull","Ward of the Damned"],
    ult:"Heart Strike",altUlt:"Chaos Barrage",
    tip:"<b>Dodge into her dashes, not away.</b> Use the blood tracker to find her on the Oakveil paths. Punish her teleport recovery. Unlocks Slashers.",
+   brutal:"Stat scaling only — Brutal-specific mechanics unconfirmed for this Oakveil boss.",
    reward:"Tier 2 Illusion (Mosquito / Mist Trance / Curse) · Passive Slot · Slashers"},
 
   {act:4,lvl:75,name:"Stavros the Carver",epithet:"the logging-camp butcher",loc:"Static · Carvers Logging Outpost, W Oakveil",ac:C.ember,
@@ -541,6 +589,7 @@ const BOSSES = [
    spells:["Corrupted Skull","Ward of the Damned"],
    ult:"Heart Strike",
    tip:"<b>His swings are telegraphed</b> — dodge in, land two or three hits, dodge out. Clear the logging-camp adds before you pull him.",
+   brutal:"Corruption debuff requires careful stack management; Brutal-specific changes unconfirmed for this Oakveil boss.",
    reward:"Tier · Whetstone / Sawmill recipes"},
 
   {act:4,lvl:76,name:"Lucile the Venom Alchemist",epithet:"the poison brewer",loc:"Static · Venom Mixing Outpost, C Oakveil",ac:C.shadow,
@@ -552,6 +601,7 @@ const BOSSES = [
    spells:["Corrupted Skull","Chaos Volley"],
    ult:"Chaos Barrage",
    tip:"<b>Treat the floor as hazard.</b> Keep repositioning out of the spreading pools and never get cornered. Unlocks the Blood Homogenizer.",
+   brutal:"Random elixir drops add unpredictability; Brutal-specific changes unconfirmed for this Oakveil boss.",
    reward:"Tier 2 Blood (Blood Fountain / Sanguine Coil) · Blood Homogenizer"},
 
   {act:4,lvl:76,name:"Matka the Curse Weaver",epithet:"the rot-witch",loc:"Static · Nest of the Curse Weaver, NE Cursed Forest",ac:C.shadow,
@@ -563,6 +613,7 @@ const BOSSES = [
    spells:["Corrupted Skull","Ward of the Damned"],
    ult:"Heart Strike",
    tip:"<b>Don't let curse stacks pile up</b> — keep moving out of pools and AoE the mosquitoes fast.",
+   brutal:"Stat scaling only — Brutal-specific mechanics unconfirmed for this Oakveil boss.",
    reward:"Tier 2 Illusion (Curse) · Advanced Loom"},
 
   {act:4,lvl:76,name:"Terrorclaw the Ogre",epithet:"the frozen-cave horror",loc:"Static · Frozen Cave, S Hallowed Mountains",ac:C.frost,
@@ -574,6 +625,7 @@ const BOSSES = [
    spells:["Corrupted Skull","Ward of the Damned"],
    ult:"Heart Strike",
    tip:"<b>Come in a level or two above him</b> — his damage resistance makes under-leveling brutal. Dodge the leaping slams and punish the long recovery. Unlocks the second source of Arctic Leap + Advanced Tannery.",
+   brutal:"Stat scaling only — higher HP and 75% more damage, no new mechanics.",
    reward:"Tier 3 Frost (Arctic Leap / Ice Block) · Advanced Tannery"},
 
   {act:4,lvl:79,name:"Azariel the Sunbringer",epithet:"the radiant zealot",loc:"Static · Fortress of Light approach, Silverlight",ac:C.holy,
@@ -585,6 +637,7 @@ const BOSSES = [
    spells:["Chaos Volley","Corrupted Skull"],
    ult:"Chaos Barrage",
    tip:"<b>Holy Resistance Flask + clear the silver mobs</b> before engaging. Then dodge the beam sweeps and burst.",
+   brutal:"Stat scaling only — higher HP and 75% more damage, no new mechanics.",
    reward:"Tier 3 Chaos · Gold Ingot"},
 
   {act:4,lvl:79,name:"Voltatia the Power Master",epithet:"the lightning core",loc:"Static · Transcendum Power Plant, Gloomrot N",ac:C.storm,
@@ -596,6 +649,7 @@ const BOSSES = [
    spells:["Chaos Volley","Corrupted Skull"],
    ult:"Chaos Barrage",
    tip:"<b>The floor is the boss.</b> Track which tiles electrify and pre-move — most damage here is self-inflicted. Drops Power Core + EMP (you need 2 EMPs for Adam).",
+   brutal:"Stat scaling only — higher HP and 75% more damage, no new mechanics.",
    reward:"Tier 2 Storm · Power Core · EMP · Blue Teleporter"},
 
   {act:4,lvl:80,name:"Simon Belmont the Vampire Hunter",epithet:"the whip-master",loc:"Roaming · Dunley / Silverlight (scaling)",ac:C.ember,
@@ -607,6 +661,7 @@ const BOSSES = [
    spells:["Corrupted Skull","Chaos Volley"],
    ult:"Chaos Barrage",altUlt:"Merciless Charge",
    tip:"<b>Stay just outside whip range</b> and dash in on his recovery. His grapple is the only real threat — dodge it.",
+   brutal:"Stat scaling only — higher HP and 75% more damage, no new mechanics.",
    reward:"Sanguine Whip · Passive Slot"},
 
   {act:4,lvl:82,name:"Dantos the Forgebinder",epithet:"the molten smith",loc:"Static · Venom Blades Bastion, Oakveil (W side room)",ac:C.ember,
@@ -618,6 +673,7 @@ const BOSSES = [
    spells:["Corrupted Skull","Ward of the Damned"],
    ult:"Heart Strike",
    tip:"<b>Keep moving through the fire zones</b> and clear his constructs with cleave. Find him in the small western side room of the bastion. Unlocks the Fusion Forge for top-tier gear.",
+   brutal:"Stat scaling only — Brutal-specific mechanics unconfirmed for this Oakveil boss.",
    reward:"Tier 2 Frost (Crystal Lance / Frost Barrier) · Fusion Forge · Ember Glass"},
 
   {act:4,lvl:84,name:"Lord Styx the Night Champion",epithet:"keeper of the Blood Key",loc:"Roaming · Dracula's Demise (central map)",ac:C.blood,tag:"Bat Form",tagKind:"form",
@@ -629,6 +685,7 @@ const BOSSES = [
    spells:["Corrupted Skull","Ward of the Damned"],
    ult:"Heart Strike",altUlt:"Crimson Beam",
    tip:"<b>Out-sustain his drain.</b> Grants Bat Form and the Onyx Tear + Blood Key — the literal key to Dracula.",
+   brutal:"Full rework: gains teleport, jump attack, Gargoyle summons, and extra Bat Swarm projectile; at ~15% HP <b>spams 6–7 simultaneous Bat Swarms</b> while firing Chaos Bolts.",
    reward:"Bat Form · Onyx Tear · Blood Key"},
 
   // ============ SOUL SHARD / FINALE ============
@@ -641,6 +698,7 @@ const BOSSES = [
    spells:["Corrupted Skull","Ward of the Damned"],
    ult:"Heart Strike",altUlt:"Army of the Dead",
    tip:"<b>Everything he does is telegraphed.</b> Dodge into his side after a slam, hit three times, reset.",
+   brutal:"Stat scaling only — higher HP and 75% more damage, no new mechanics.",
    reward:"Tier 3 Illusion · Bat Leather · Bat Leather Bag"},
 
   {act:"boss",lvl:84,name:"General Valencia the Depraved",epithet:"the spear of Mortium",loc:"Static · North Fortress Ruins, Mortium",ac:C.blood,
@@ -652,6 +710,7 @@ const BOSSES = [
    spells:["Corrupted Skull","Ward of the Damned"],
    ult:"Heart Strike",altUlt:"Army of the Dead",
    tip:"<b>Watch for the red circle under you</b> — she leaps and slams with a spike ring. Roll out the instant it appears.",
+   brutal:"Stat scaling only — higher HP and 75% more damage, no new mechanics.",
    reward:"Blood Spell Point · Shadow Weave · Primal Jewels"},
 
   {act:"boss",lvl:86,name:"Solarus the Immaculate",epithet:"the holy gatekeeper",loc:"Static · Fortress of Light, Silverlight (Holy Resist req.)",ac:C.holy,
@@ -663,6 +722,7 @@ const BOSSES = [
    spells:["Corrupted Skull","Ward of the Damned"],
    ult:"Heart Strike",altUlt:"Chaos Barrage",
    tip:"<b>Holy Resistance + clear the outer mobs</b> before engaging. Phase two adds wings and falling light — keep circling.",
+   brutal:"<b>Regens HP during his immunity phase</b>; Pillars of Light can spawn at any time; more buzzsaws per sword swing; his Angel becomes unkillable if dropped below 50% HP.",
    reward:"Soul Shard of Solarus · Dracula's Boots"},
 
   {act:"boss",lvl:86,name:"Talzur the Winged Horror",epithet:"the soul shard of the peak",loc:"Static · The Dreaded Peak, E Farbane (Bat Form req.)",ac:C.shadow,
@@ -674,6 +734,7 @@ const BOSSES = [
    spells:["Chaos Volley","Ward of the Damned"],
    ult:"Chaos Barrage",
    tip:"<b>Use Bat Form to reach the top of the Dreaded Peak.</b> A ranged build dramatically outperforms melee since he spends most of the fight in the air. Punish his dive landings.",
+   brutal:"Each fireball in his Bombing Run can spawn a <b>Giant Crow add</b>; spawns 8 Frost Vortexes instead of 1.",
    reward:"Soul Shard of the Winged Horror · Dracula's Gloves set"},
 
   {act:"boss",lvl:88,name:"Megara the Serpent Queen",epithet:"the soul shard of the serpent",loc:"Static · Ruins of Mortium (Soul Shard arena)",ac:C.shadow,
@@ -685,6 +746,7 @@ const BOSSES = [
    spells:["Corrupted Skull","Ward of the Damned"],
    ult:"Heart Strike",
    tip:"<b>Don't let venom stacks pile up</b> — keep moving out of the poison waves and AoE the snake adds fast. A required Soul Shard for the endgame.",
+   brutal:"Multiple phases with heavy poison mechanics; Brutal-specific changes unconfirmed — stock poison resistance before this fight.",
    reward:"Soul Shard of the Serpent · Dracula's Leggings set"},
 
   {act:"boss",lvl:88,name:"Adam the Firstborn",epithet:"the penultimate horror",loc:"Static · Doctor Blackbrew's Castle, Gloomrot N (2 EMPs to enter)",ac:C.storm,
@@ -696,6 +758,7 @@ const BOSSES = [
    spells:["Corrupted Skull","Ward of the Damned"],
    ult:"Heart Strike",altUlt:"Chaos Barrage",
    tip:"<b>Disable the field nodes to move freely</b> — fighting on a live floor is a death sentence. Bring 2 EMPs (from Voltatia) just to enter. Don't rush him.",
+   brutal:"All Lightning Towers start <b>shielded and invulnerable</b> — shields drop on a timer and re-shield on cycle, forcing constant grid repositioning throughout the fight.",
    reward:"Soul Shard of the Monster · Dracula's Chestguard"},
 
   {act:"boss",lvl:91,name:"Dracula the Immortal King",epithet:"the final dawn",loc:"Static · Dracula's Castle, Ruins of Mortium (Blood Key)",ac:C.blood,
@@ -707,5 +770,6 @@ const BOSSES = [
    spells:["Chaos Volley","Ward of the Damned"],
    ult:"Heart Strike",altUlt:"Chaos Barrage",
    tip:"<b>Block the Howling Axes behind a pillar or Ward.</b> Dread Stab incapacitates — break it fast. Take the Hunger for Blood passive (+10% dmg), bring a 100% blood and two potions. Never stop punishing between his teleports.",
+   brutal:"Phase 3: <b>blood bolts</b> fly toward Dracula healing him — destroy with AoE before they land or they spawn Shadowkin adds; random sword rain deals ~600 damage per hit.",
    reward:"The throne is yours. The hunt ends."}
 ];
