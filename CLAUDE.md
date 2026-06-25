@@ -120,6 +120,14 @@ Roughly priority-ordered. Ask before starting any of these.
   whether to show a "reset to default" affordance, and how the cheat-sheet table reflects
   customised builds.
 
+- **Shareable build links** — build on top of the loadout builder. Encode a boss's chosen
+  spells/ult into the URL so a custom build can be linked. Proposed scheme:
+  `#boss-slug/Spell+One/Spell+Two/Ult+Name` — slash-delimited after the slug, URL-safe,
+  human-readable, no backend required. On load: parse fragment, open card, apply overrides.
+  A "Copy build link" button sits beside the existing `#` anchor. Phase 1: spells + ult only.
+  Phase 2: extend to full loadout (veil, weapon, blood). Reconciliation rule: URL param wins
+  on fresh load; `localStorage` wins on return visits with no param present.
+
 ### Completed (continued)
 
 - ~~**Gear progression checkpoints**~~ — done. Four panels before Act II/III/IV/Endgame, each with 6 bullet points (weapon tier, armor, stations, veil, spells, resources). Show/hide with act filters.
