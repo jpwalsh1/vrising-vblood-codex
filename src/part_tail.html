@@ -31,26 +31,34 @@ const slugify = name => name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^
 const BT_CLASS = {Brute:'bt-brute',Rogue:'bt-rogue',Scholar:'bt-scholar',Warrior:'bt-warrior',Creature:'bt-creature',Draculin:'bt-draculin',Worker:'bt-worker'};
 const btSpan = name => BT_CLASS[name] ? `<span class="${BT_CLASS[name]}">${name}</span>` : name;
 
-function kitRows(b){
+function kitRows(b, customBuild) {
   const none = v => !v || v === '—';
   const pill = v => none(v) ? `<span class="pill empty">—</span>` : `<span class="pill ${school(v)}">${v}</span>`;
-  const veilCell = none(b.veil)
+  const isCustom = !!customBuild;
+  const dispWeapon = customBuild?.weapon || b.weapon;
+  const dispVeil   = customBuild?.veil   || b.veil;
+  const dispSpells = customBuild ? [customBuild.spell1||'—', customBuild.spell2||'—'] : b.spells;
+  const dispUlt    = customBuild?.ult    || b.ult;
+  const dispBlood  = customBuild?.blood
+    ? [[customBuild.blood, BLOOD_INFO[customBuild.blood]?.desc || 'custom pick']]
+    : b.blood;
+  const veilCell = none(dispVeil)
     ? `<span class="pill empty">none yet</span><span class="slotnote">unlocks later</span>`
-    : `${pill(b.veil)}<span class="slotnote">movement</span>`;
-  const spellsCell = b.spells.filter(s=>!none(s)).length
-    ? b.spells.map(s=>none(s)?'':pill(s)).join('')
+    : `${pill(dispVeil)}<span class="slotnote">movement</span>`;
+  const spellsCell = dispSpells.filter(s=>!none(s)).length
+    ? dispSpells.map(s=>none(s)?'':pill(s)).join('')
     : `<span class="pill empty">basic attacks only</span>`;
-  const ultCell = none(b.ult)
+  const ultCell = none(dispUlt)
     ? `<span class="pill empty">none yet</span><span class="slotnote">unlocks later</span>`
-    : pill(b.ult);
-  const altUltNote = b.altUlt ? `<span class="alt-ult">alt: ${pill(b.altUlt)}</span>` : '';
+    : pill(dispUlt);
+  const customBadge = isCustom ? `<span class="custom-badge">Custom</span>` : '';
   let html = '';
-  html += `<div class="loadout-label">Loadout</div><div class="kit">`;
-  html += `<div class="kit-row"><span class="tag">Weapon</span><span class="val">${b.weapon}</span></div>`;
-  html += `<div class="kit-row"><span class="tag">Blood</span><span class="val">${b.blood.map(x=>`${btSpan(x[0])} <em>— ${x[1]}</em>`).join('<br>')}</span></div>`;
+  html += `<div class="loadout-label">Loadout ${customBadge}</div><div class="kit">`;
+  html += `<div class="kit-row"><span class="tag">Weapon</span><span class="val">${dispWeapon}</span></div>`;
+  html += `<div class="kit-row"><span class="tag">Blood</span><span class="val">${dispBlood.map(x=>`${btSpan(x[0])} <em>— ${x[1]}</em>`).join('<br>')}</span></div>`;
   html += `<div class="kit-row"><span class="tag">Veil</span><span class="val">${veilCell}</span></div>`;
   html += `<div class="kit-row"><span class="tag">Spells</span><span class="val">${spellsCell}</span></div>`;
-  html += `<div class="kit-row"><span class="tag">Ultimate</span><span class="val">${ultCell}${altUltNote}</span></div>`;
+  html += `<div class="kit-row"><span class="tag">Ultimate</span><span class="val">${ultCell}</span></div>`;
   html += `</div>`;
   return html;
 }
@@ -104,7 +112,7 @@ function render(){
         <div class="card-body"><div class="card-body-inner">
           <p class="threat">${b.threat}</p>
           ${b.brutal ? `<div class="brutal-note"><span class="brutal-label">Brutal ★</span>${b.brutal}</div>` : ''}
-          ${kitRows(b)}
+          <div class="kit-section">${kitRows(b, loadBuild(slug))}</div>
           <div class="gate"><span class="glabel">Gear you'll already have here</span>${b.gate}</div>
           <div class="tip">${b.tip}</div>
           <div class="reward"><b>UNLOCKS</b> &nbsp;${b.reward}</div>
@@ -148,7 +156,7 @@ function buildCheatTable(){
       const veilShort = none(b.veil) ? '—' : b.veil.replace('Veil of ','');
       const spellsText = b.spells.filter(s=>!none(s)).join(', ') || '—';
       const bloodHtml = b.blood.map(x=>BT_CLASS[x[0]]?`<span class="${BT_CLASS[x[0]]}">${x[0]}</span>`:x[0]).join(' / ');
-      const ultHtml = none(b.ult) ? '—' : b.ult + (b.altUlt ? `<span class="ct-altult">alt: ${b.altUlt}</span>` : '');
+      const ultHtml = none(b.ult) ? '—' : b.ult;
       const tr = document.createElement('tr');
       tr.dataset.act = b.act;
       tr.dataset.search = (b.name+' '+b.blood.map(x=>x[0]).join(' ')+' '+b.weapon+' '+b.loc+' '+(b.tag||'')).toLowerCase();
@@ -264,6 +272,18 @@ function loadBuild(slug) {
 function saveBuildLS(slug, build) {
   try { localStorage.setItem('vbc-build-'+slug, JSON.stringify(build)); } catch {}
 }
+function clearBuildLS(slug) {
+  try { localStorage.removeItem('vbc-build-'+slug); } catch {}
+}
+function updateCardKit(slug, build) {
+  const card = document.getElementById(slug);
+  if(!card) return;
+  const section = card.querySelector('.kit-section');
+  if(!section) return;
+  const b = BOSSES.find(x => slugify(x.name) === slug);
+  if(!b) return;
+  section.innerHTML = kitRows(b, build);
+}
 function encBuild(slug, build) {
   const e = v => encodeURIComponent(v||'').replace(/%20/g,'+');
   return '#'+slug+'/'+[build.weapon,build.blood,build.veil,build.spell1,build.spell2,build.ult].map(e).join('/');
@@ -334,6 +354,8 @@ function renderDlg() {
     btn.onclick = () => { dlgTab = btn.dataset.tab; renderPanel(); refreshTabs(); };
   });
   dlg.querySelector('#bd-reset').onclick = () => {
+    clearBuildLS(slug);
+    updateCardKit(slug, null);
     dlgBuild = defaultBuild(b); dlgShared = false; renderDlg();
   };
   dlg.querySelector('#bd-share').onclick = () => {
@@ -344,6 +366,7 @@ function renderDlg() {
   };
   dlg.querySelector('#bd-save').onclick = () => {
     saveBuildLS(slug, dlgBuild);
+    updateCardKit(slug, dlgBuild);
     if(dlgShared) { dlgShared = false; renderDlg(); return; }
     const msg = dlg.querySelector('#bd-saved');
     if(msg) { msg.style.display='inline'; setTimeout(()=>{ msg.style.display='none'; },2000); }
