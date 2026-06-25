@@ -396,8 +396,14 @@ function renderPanel() {
       WEAPON_TYPES.forEach(wt => {
         const full = tier.name + ' ' + wt;
         const sel = (dlgBuild.weapon || def.weapon) === full;
-        html += `<div class="bd-wep${sel?' selected':''}" data-weapon="${full}">
+        const unlockInfo = WEAPON_UNLOCK[wt];
+        const locked = unlockInfo && unlockInfo.gl >= gl;
+        const lockNote = locked
+          ? `<div class="bd-unlock">Unlocked by ${unlockInfo.boss} (GL ${unlockInfo.gl})</div>`
+          : '';
+        html += `<div class="bd-wep${sel?' selected':''}${locked?' bd-locked':''}" data-weapon="${full}"${locked?' data-locked="1"':''}>
           <div class="bd-wep-name">${wt}</div>
+          ${lockNote}
         </div>`;
       });
       html += '</div>';
@@ -405,6 +411,7 @@ function renderPanel() {
     panel.insertAdjacentHTML('beforeend', html);
     panel.querySelectorAll('.bd-wep').forEach(el => {
       el.onclick = () => {
+        if(el.dataset.locked) return;
         dlgBuild.weapon = el.dataset.weapon;
         renderPanel();
         refreshTabs();

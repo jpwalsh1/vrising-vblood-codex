@@ -38,7 +38,7 @@ const BOSSES = [
 
   {act:1,lvl:20,name:"Errol the Stonebreaker",epithet:"the hammer in the mine",loc:"Static · Bandit Copper Mine, C Farbane",ac:C.ember,
    threat:"Slow but his <b>hammer melee hits like a truck</b>, and he layers in Aftershock chaos blasts. Miner adds tag along.",
-   weapon:"Crossbow — kite him, his slow speed favours range",
+   weapon:"Spear or Axe — kite him between swings; his slow speed favours range",
    gate:"Hunter's Crossbow (Rufus) · starter melee",
    blood:[["Any","early game"]],
    veil:"—",
@@ -98,7 +98,7 @@ const BOSSES = [
 
   {act:1,lvl:30,name:"Nibbles the Putrid Rat",epithet:"the summoned vermin",loc:"Summoned · Vermin Nest (your castle)",ac:C.shadow,tag:"Rat Form",tagKind:"form",
    threat:"Doesn't spawn in the world — <b>summoned at your Vermin Nest</b>. Easy boss, just swarmed by small rats chipping you.",
-   weapon:"Any AoE weapon — Reaper/Greatsword once you have them, else Mace",
+   weapon:"Mace or Axe — broad swings clear the rat swarm",
    gate:"Vermin Nest built · ingredients (Twilight Snapper, Fish Bone, Grave Dust)",
    blood:[["Any","trivial fight"]],
    veil:"—",
@@ -146,7 +146,7 @@ const BOSSES = [
 
   {act:1,lvl:37,name:"Nicholaus the Fallen",epithet:"the graveyard necromancer",loc:"Static · Forgotten Cemetery, C Farbane",ac:C.shadow,
    threat:"A necromancer who <b>raises endless skeletons</b>. His own attacks are simple — the revived adds are the real pressure.",
-   weapon:"Reaper if you have it, else Greatsword/Mace — cleave the skeletons",
+   weapon:"Mace — wide swings cleave the skeletons; Reaper and Greatsword both unlock in Act II",
    gate:"Copper/iron weapons · Chaos Volley (Lidia)",
    blood:[["Brute","sustain through the swarm"]],
    veil:"—",
@@ -158,7 +158,7 @@ const BOSSES = [
 
   {act:1,lvl:37,name:"Quincey the Bandit King",epithet:"the Act I gatekeeper",loc:"Static · Bandit Stronghold, N Farbane",ac:C.ember,tag:"First Ultimate",
    threat:"The <b>Act I final boss</b> — shield bashes, a charge, and a phase-2 triple-dash combo. Fire plates cover the floor and chip you if you linger.",
-   weapon:"Crossbow or Greatsword — punish his post-dash stun",
+   weapon:"Crossbow — punish his post-dash stun from range",
    gate:"Iron weapons · Veil of Chaos (Clive) · Explosive Box to breach the gate",
    blood:[["Brute","or Rogue if your dodges are clean"]],
    veil:"Veil of Chaos",
@@ -183,7 +183,7 @@ const BOSSES = [
 
   {act:2,lvl:44,name:"Tristan the Vampire Hunter",epithet:"the relentless pursuer",loc:"Roaming · N Farbane roads",ac:C.ember,
    threat:"<b>Greatsword bruiser with fire/frost combo swings.</b> At 50% HP he shouts 'Die… and stay dead!' and enters a <b>Whirlwind</b> — a devastating AoE spin you must escape immediately or die.",
-   weapon:"Reaper or Crossbow — reaper arcs punish his post-lunge pause; crossbow kites the Whirlwind phase",
+   weapon:"Crossbow — kite his lunge and outrun the Whirlwind phase at 50% HP",
    gate:"Veil of Blood (Beatrice) · Veil of Illusion (Polora) · Chaos Barrage (Quincey)",
    blood:[["Warrior","physical damage reduction through his burst combos"],["Rogue","speed to outrun his Whirlwind if you prefer full kite"]],
    veil:"Veil of Blood",
@@ -196,7 +196,7 @@ const BOSSES = [
 
   {act:2,lvl:44,name:"Vincent the Frostbringer",epithet:"the militia captain on the road",loc:"Roaming · Dunley Farmlands",ac:C.frost,
    threat:"A mounted captain whose <b>frost missiles freeze you in place</b>, then his crossbow lackeys punish the lockup. The freeze is the killer — not the damage.",
-   weapon:"Greatsword — wide swings punish his charge windows",
+   weapon:"Crossbow or Mace — punish his charge windows from range or close; Greatsword unlocks from Tristan at the same GL",
    gate:"Greatsword (Tristan) · Crossbow (Rufus)",
    blood:[["Brute","≥90% for lifesteal through the chip"],["Rogue","if you'd rather burst him from range"]],
    veil:"Veil of Blood",
