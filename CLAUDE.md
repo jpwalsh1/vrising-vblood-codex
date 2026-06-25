@@ -109,6 +109,7 @@ Roughly priority-ordered. Ask before starting any of these.
 - ~~**Alternate-ultimate notes**~~ — done. `altUlt` field on 12 bosses, shown as small alt pill.
 - ~~**Unlock reward preview**~~ — done. Collapsed card header shows reward line in gold monospace.
 - ~~**Mobile card layout tweak**~~ — done. Sub-400px tweaks: hide reward preview, tighten header padding.
+- ~~**Brutal difficulty notes**~~ — done. `brutal` field on all 64 bosses; ember-red callout below threat text. ~30 bosses have real mechanic changes, rest flagged as stat-scaling only.
 
 ### Ready to build
 
