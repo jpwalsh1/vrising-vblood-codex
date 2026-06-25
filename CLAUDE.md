@@ -113,25 +113,31 @@ Roughly priority-ordered. Ask before starting any of these.
 
 ### Ready to build
 
-- **Per-card loadout builder** — spell/veil/ult slots become clickable dropdowns showing all
-  progression-legal options for that boss's gear level. Existing card data is the default/starter
-  build. No login; state persists via `localStorage` keyed by boss slug. Each card becomes a
-  lightweight planner the player can tweak. Design questions to resolve before building: which
-  slots are editable (all? spells + ult only?), how to surface the full ability list per slot,
-  whether to show a "reset to default" affordance, and how the cheat-sheet table reflects
-  customised builds.
+- ~~**Per-card loadout builder**~~ — done. "Customize Build" button on each expanded card opens
+  a `<dialog>` with tabs for Weapon (dual-tier grid), Blood (all 7 types with descriptions),
+  Veil, Spell 1, Spell 2, Ultimate. Spell panels default to "Recommended" filter (boss defaults);
+  school filter tabs drill into full spell list. Locked spells (above boss GL) shown at 38% opacity,
+  tappable for details + unlock source, but not selectable. State persists via `localStorage`
+  keyed by `vbc-build-{slug}`.
 
-- **Shareable build links** — build on top of the loadout builder. Encode a boss's chosen
-  spells/ult into the URL so a custom build can be linked. Proposed scheme:
-  `#boss-slug/Spell+One/Spell+Two/Ult+Name` — slash-delimited after the slug, URL-safe,
-  human-readable, no backend required. On load: parse fragment, open card, apply overrides.
-  A "Copy build link" button sits beside the existing `#` anchor. Phase 1: spells + ult only.
-  Phase 2: extend to full loadout (veil, weapon, blood). Reconciliation rule: URL param wins
-  on fresh load; `localStorage` wins on return visits with no param present.
+- ~~**Shareable build links**~~ — done. URL scheme `#boss-slug/Weapon/Blood/Veil/Spell1/Spell2/Ult`
+  (slash-delimited, `+` for spaces). "Copy Link" button in dialog footer encodes current build.
+  On load, if hash has 7 segments the dialog opens automatically with that build loaded and footer
+  shows "Import Build" instead of "Save Build". URL param wins on fresh load; localStorage wins
+  on return visits.
 
 ### Completed (continued)
 
 - ~~**Gear progression checkpoints**~~ — done. Four panels before Act II/III/IV/Endgame, each with 6 bullet points (weapon tier, armor, stations, veil, spells, resources). Show/hide with act filters.
+
+### Future / post-loadout-builder
+
+- **Multiple saved builds per boss + import** — allow users to save more than one build per boss,
+  with one designated as "active" that displays on the card. When viewing a shared build URL, show
+  an "Import this build" button so users can save it to their own codex without overwriting their
+  existing build. The active build indicator and build list management (rename, delete, reorder)
+  can live in the dialog. Shared URLs should reconcile against existing saves: if the user already
+  has a build for that boss, offer to save as a new slot rather than overwriting.
 
 ### Needs research / data work
 

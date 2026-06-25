@@ -450,6 +450,186 @@
     color:var(--gold);opacity:.65;margin-top:.38rem;display:block;
     white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
   }
+
+  /* ---------- CUSTOMIZE BUILD BUTTON ---------- */
+  .customize-btn{
+    display:block;width:100%;margin-top:.9rem;
+    padding:.44rem .8rem;background:transparent;
+    border:1px solid rgba(201,162,75,.28);color:var(--gold);border-radius:2px;
+    font-family:'JetBrains Mono',monospace;font-size:.54rem;letter-spacing:.15em;
+    text-transform:uppercase;cursor:pointer;transition:background .15s,border-color .15s;
+  }
+  .customize-btn:hover{background:rgba(201,162,75,.07);border-color:rgba(201,162,75,.55)}
+
+  /* ---------- BUILD DIALOG ---------- */
+  #build-dialog{
+    position:fixed;inset:0;margin:auto;
+    width:min(96vw,620px);max-height:90vh;
+    background:var(--crypt);border:1px solid var(--ash);border-radius:3px;
+    padding:0;color:var(--bone);overflow:hidden;
+    display:flex;flex-direction:column;
+  }
+  #build-dialog::backdrop{background:rgba(0,0,0,.78)}
+  .bd-hdr{
+    background:var(--pitch);padding:.85rem 1.1rem;
+    display:flex;align-items:center;gap:.75rem;
+    border-bottom:1px solid var(--stone);flex-shrink:0;
+  }
+  .bd-hdr-text{flex:1;min-width:0}
+  .bd-hdr-text h2{
+    font-family:'Cinzel',serif;font-size:.95rem;font-weight:600;
+    color:var(--parchment);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  }
+  .bd-hdr-text p{
+    font-family:'JetBrains Mono',monospace;font-size:.48rem;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--bone-dim);margin-top:.15rem;
+  }
+  .bd-close{
+    background:transparent;border:none;color:var(--bone-dim);
+    cursor:pointer;font-size:1.1rem;line-height:1;padding:.2rem .3rem;flex-shrink:0;
+  }
+  .bd-close:hover{color:var(--parchment)}
+  .bd-tabs{
+    display:flex;background:var(--pitch);border-bottom:1px solid var(--stone);
+    overflow-x:auto;scrollbar-width:none;flex-shrink:0;
+  }
+  .bd-tabs::-webkit-scrollbar{display:none}
+  .bd-tab{
+    padding:.52rem .85rem;font-family:'JetBrains Mono',monospace;
+    font-size:.48rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--bone-dim);cursor:pointer;border:none;background:transparent;
+    border-bottom:2px solid transparent;margin-bottom:-1px;
+    white-space:nowrap;display:flex;align-items:center;gap:.3rem;transition:color .15s;
+  }
+  .bd-tab:hover{color:var(--bone)}
+  .bd-tab.active{color:var(--parchment);border-bottom-color:var(--gold)}
+  .bd-tab .pill{font-size:.7rem;padding:.08rem .45rem}
+  .bd-body{
+    flex:1;overflow-y:auto;padding:.9rem 1.1rem;
+    display:flex;flex-direction:column;gap:.8rem;
+  }
+  .bd-cur{
+    background:var(--stone);border:1px solid var(--ash);border-radius:2px;
+    padding:.65rem .85rem;display:flex;align-items:flex-start;gap:.65rem;
+  }
+  .bd-cur-label{
+    font-family:'JetBrains Mono',monospace;font-size:.45rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--bone-dim);margin-bottom:.2rem;
+  }
+  .bd-cur-name{font-size:.92rem;font-weight:600;color:var(--parchment)}
+  .bd-cur-desc{font-size:.8rem;color:var(--bone-dim);margin-top:.15rem;line-height:1.45;font-style:italic}
+  .bd-filters{display:flex;flex-wrap:wrap;gap:.3rem}
+  .bd-sf{
+    padding:.22rem .55rem;border-radius:2px;font-family:'JetBrains Mono',monospace;
+    font-size:.47rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;
+    border:1px solid var(--ash);background:transparent;color:var(--bone-dim);transition:all .12s;
+  }
+  .bd-sf:hover{color:var(--bone);border-color:var(--bone-dim)}
+  .bd-sf.active{border-color:var(--gold);color:var(--gold);background:rgba(201,162,75,.07)}
+  .bd-sf.active.blood  {border-color:#b8323e;color:#f0a9ad;background:rgba(184,50,62,.1)}
+  .bd-sf.active.chaos  {border-color:#d9622e;color:#f3b083;background:rgba(217,98,46,.1)}
+  .bd-sf.active.frost  {border-color:#4f93c4;color:#a8d4ec;background:rgba(79,147,196,.1)}
+  .bd-sf.active.unholy {border-color:#4f9d6b;color:#9fd9b3;background:rgba(79,157,107,.1)}
+  .bd-sf.active.illusion{border-color:#9b6fc4;color:#cdb0ec;background:rgba(155,111,196,.1)}
+  .bd-sf.active.storm  {border-color:#d4b24a;color:#ecd693;background:rgba(212,178,74,.1)}
+  .bd-slabel{
+    font-family:'JetBrains Mono',monospace;font-size:.46rem;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--bone-dim);opacity:.55;
+  }
+  .bd-grid{display:grid;grid-template-columns:1fr 1fr;gap:.45rem}
+  @media(max-width:480px){.bd-grid{grid-template-columns:1fr}}
+  .bd-item{
+    background:var(--stone);border:1px solid var(--ash);border-radius:2px;
+    padding:.58rem .72rem;cursor:pointer;transition:border-color .12s;position:relative;
+  }
+  .bd-item:hover:not(.bd-locked){border-color:var(--bone-dim)}
+  .bd-item.selected{border-color:var(--gold);background:rgba(201,162,75,.05)}
+  .bd-item.selected::after{
+    content:'✓';position:absolute;top:.45rem;right:.55rem;
+    color:var(--gold);font-size:.75rem;font-family:'JetBrains Mono',monospace;
+  }
+  .bd-item.bd-locked{opacity:.38;cursor:default}
+  .bd-item.bd-hidden{display:none}
+  .bd-iname{
+    font-size:.86rem;font-weight:600;color:var(--parchment);margin-bottom:.2rem;
+    display:flex;align-items:center;gap:.3rem;flex-wrap:wrap;padding-right:.9rem;
+  }
+  .bd-idesc{font-size:.76rem;color:var(--bone-dim);line-height:1.4;font-style:italic}
+  .bd-idetail{
+    font-size:.72rem;color:var(--bone-dim);margin-top:.38rem;
+    border-top:1px solid var(--ash);padding-top:.38rem;line-height:1.5;display:none;
+  }
+  .bd-item.open .bd-idetail{display:block}
+  .bd-unlock{
+    font-family:'JetBrains Mono',monospace;font-size:.44rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--bone-dim);display:block;margin-top:.28rem;
+  }
+  .bd-locked-note{
+    color:var(--ember);font-family:'JetBrains Mono',monospace;
+    font-size:.43rem;letter-spacing:.1em;text-transform:uppercase;
+    display:block;margin-top:.28rem;
+  }
+  /* blood panel */
+  .bd-bt{
+    background:var(--stone);border:1px solid var(--ash);border-radius:2px;
+    padding:.62rem .78rem;cursor:pointer;transition:border-color .12s;position:relative;
+  }
+  .bd-bt:hover{border-color:var(--bone-dim)}
+  .bd-bt.selected{border-color:var(--gold);background:rgba(201,162,75,.05)}
+  .bd-bt.selected::after{
+    content:'✓';position:absolute;top:.45rem;right:.55rem;
+    color:var(--gold);font-size:.75rem;font-family:'JetBrains Mono',monospace;
+  }
+  .bd-bt-name{font-size:.9rem;font-weight:600;margin-bottom:.2rem}
+  .bd-bt-desc{font-size:.76rem;color:var(--bone-dim);line-height:1.4;font-style:italic}
+  .bd-bt-detail{
+    font-size:.72rem;color:var(--bone-dim);margin-top:.38rem;
+    border-top:1px solid var(--ash);padding-top:.38rem;line-height:1.5;display:none;
+  }
+  .bd-bt.open .bd-bt-detail{display:block}
+  /* weapon panel */
+  .bd-tier-label{
+    font-family:'JetBrains Mono',monospace;font-size:.46rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--bone-dim);opacity:.5;margin-bottom:.3rem;
+  }
+  .bd-wrow{display:grid;grid-template-columns:repeat(4,1fr);gap:.38rem;margin-bottom:.7rem}
+  .bd-wep{
+    background:var(--stone);border:1px solid var(--ash);border-radius:2px;
+    padding:.5rem .3rem;cursor:pointer;text-align:center;transition:border-color .12s;
+  }
+  .bd-wep:hover{border-color:var(--bone-dim)}
+  .bd-wep.selected{border-color:var(--gold);background:rgba(201,162,75,.05)}
+  .bd-wep-name{
+    font-family:'JetBrains Mono',monospace;font-size:.44rem;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--bone-dim);margin-top:.18rem;line-height:1.3;
+  }
+  .bd-wep.selected .bd-wep-name{color:var(--gold)}
+  /* footer */
+  .bd-footer{
+    display:flex;align-items:center;gap:.45rem;padding:.7rem 1.1rem;
+    border-top:1px solid var(--stone);background:var(--pitch);flex-shrink:0;
+  }
+  .bd-btn{
+    padding:.4rem .7rem;border-radius:2px;
+    font-family:'JetBrains Mono',monospace;font-size:.5rem;letter-spacing:.12em;
+    text-transform:uppercase;cursor:pointer;transition:all .15s;
+  }
+  .bd-ghost{background:transparent;border:1px solid var(--ash);color:var(--bone-dim)}
+  .bd-ghost:hover{border-color:var(--bone-dim);color:var(--bone)}
+  .bd-save{
+    flex:1;background:rgba(201,162,75,.12);border:1px solid rgba(201,162,75,.38);
+    color:var(--gold);font-weight:700;
+  }
+  .bd-save:hover{background:rgba(201,162,75,.2)}
+  .bd-import{
+    flex:1;background:rgba(90,140,168,.12);border:1px solid rgba(90,140,168,.38);
+    color:var(--frost);font-weight:700;
+  }
+  .bd-import:hover{background:rgba(90,140,168,.2)}
+  .bd-saved-msg{
+    font-family:'JetBrains Mono',monospace;font-size:.48rem;letter-spacing:.1em;
+    color:var(--gold);display:none;margin-left:.2rem;
+  }
 </style>
 </head>
 <body>
@@ -572,6 +752,114 @@ const CHECKPOINTS = {
 
 // accent palette per damage school for variety
 const C = {blood:'#c41e2a', frost:'#5a8ca8', shadow:'#8a6aa8', holy:'#c9a24b', storm:'#5fa8c4', ember:'#e0512e'};
+
+// ---- Build dialog data ----
+const ULTS = new Set([
+  'Heart Strike','Crimson Beam',
+  'Chaos Barrage','Merciless Charge',
+  'Army of the Dead','Volatile Arachnid',
+  'Arctic Leap','Ice Block','Arctic Storm',
+  'Lightning Typhoon','Raging Tempest',
+  'Spectral Guardian','Wisp Dance'
+]);
+const VEILS = new Set([
+  'Veil of Blood','Veil of Chaos','Veil of Bones',
+  'Veil of Frost','Veil of Illusion','Veil of Storm'
+]);
+const UNLOCK = {
+  'Veil of Blood':40,'Veil of Chaos':30,'Veil of Bones':27,
+  'Veil of Frost':44,'Veil of Illusion':35,'Veil of Storm':50,
+  'Chaos Volley':30,'Power Surge':30,'Aftershock':20,
+  'Shadowbolt':0,'Blood Rite':0,'Blood Rage':20,
+  'Blood Fountain':57,'Sanguine Coil':57,'Carrion Swarm':57,
+  'Corrupted Skull':47,'Bone Explosion':27,'Ward of the Damned':37,
+  'Soulburn':63,'Death Knight':63,'Unholy Chains':63,
+  'Spectral Wolf':27,'Phantom Aegis':27,'Wraith Spear':27,'Curse':27,
+  'Frost Bat':20,'Cold Snap':20,'Ice Nova':20,
+  'Crystal Lance':53,'Frost Barrier':44,
+  'Cyclone':50,'Ball Lightning':50,'Discharge':50,
+  'Polarity Shift':60,'Lightning Curtain':60,'Lightning Tendrils':60,
+  'Heart Strike':37,'Crimson Beam':61,'Chaos Barrage':37,'Merciless Charge':37,
+  'Army of the Dead':63,'Volatile Arachnid':63,
+  'Arctic Leap':53,'Ice Block':53,'Arctic Storm':53,
+  'Raging Tempest':58,'Lightning Typhoon':58,
+  'Spectral Guardian':53,'Wisp Dance':53
+};
+const UNLOCK_SRC = {
+  0:'Starter spell',20:'GL 20 (Keely · Rufus area)',27:'GL 27 (Goreswine · Polora)',
+  30:'Clive the Firestarter',35:'Polora the Feywalker',
+  37:'GL 37 (Nicholaus · Quincey)',40:'Beatrice the Tailor',
+  44:'Vincent the Frostbringer',47:'Kriig the Undead General',
+  50:'GL 50 (Meredith · storm bosses)',53:'GL 53 (Modessia · frost bosses)',
+  57:'GL 57 (blood school bosses)',58:'Octavian the Militia Captain',
+  60:'GL 60 (Ziva · storm bosses)',61:'Styx the Sunderer',
+  63:'GL 63 (unholy endgame bosses)'
+};
+const SPELL_INFO = {
+  'Veil of Blood':    {desc:'Dash with a lifesteal burst on activation.',detail:'Best sustain veil. Each use heals you — forgiving through Act III melee gauntlets.'},
+  'Veil of Chaos':    {desc:'Dash and drop two chaos mines behind you.',detail:'Aggressive repositioning. Mines punish anything that chases you through the exit.'},
+  'Veil of Bones':    {desc:'Dash and raise a skeleton on arrival.',detail:'Skeleton absorbs one hit. Pairs well with Ward of the Damned minion builds.'},
+  'Veil of Frost':    {desc:'Dash and leave an ice patch that slows.',detail:'Slows melee chasers on exit — strong kiting veil against fast bosses.'},
+  'Veil of Illusion': {desc:'Dash and briefly vanish.',detail:'Short stealth window for repositioning. Niche but powerful in ranged-heavy fights.'},
+  'Veil of Storm':    {desc:'Dash and discharge a lightning burst.',detail:'Highest damage veil. Burst on exit — less defensive value than Blood or Frost.'},
+  'Shadowbolt':       {desc:'Ranged bolt that slows on hit.',detail:'Starter ranged option. Reliable until Chaos Volley is available at GL 30.'},
+  'Blood Rite':       {desc:'Short-duration shield that absorbs damage.',detail:'Starter defensive spell. Reliable damage buffer early game.'},
+  'Blood Rage':       {desc:'Empower your next attacks with blood energy.',detail:'Short burst window — combo with melee for quick damage spikes.'},
+  'Blood Fountain':   {desc:'AoE burst around caster with minor heal.',detail:'Melee-range AoE. Pairs with Reaper or Mace for close-range builds.'},
+  'Sanguine Coil':    {desc:'Projectile that heals you on hit.',detail:'Sustain over raw DPS. Keeps you alive through prolonged fights.'},
+  'Carrion Swarm':    {desc:'Send a cone of bats at enemies.',detail:'Projectile cone for grouped enemies. Decent AoE coverage.'},
+  'Crimson Beam':     {desc:'Channel a sustained beam of blood energy.',detail:'Highest blood DPS. Best blood ultimate for boss fights — reward from Lord Styx.'},
+  'Heart Strike':     {desc:'Teleport to target, strike and lifesteal.',detail:'Gap-closer and sustain in one. Versatile for almost any build.'},
+  'Chaos Volley':     {desc:'Fire two fast chaos projectiles.',detail:'Core mid-game spell. Highest single-target DPS at range for most of Act II–III.'},
+  'Power Surge':      {desc:'Empower your next ability for bonus damage.',detail:'Damage multiplier — cast before Chaos Volley or an ultimate for burst windows.'},
+  'Aftershock':       {desc:'Slam the ground for a melee AoE burst.',detail:'Melee-range AoE. Pairs with Mace or Reaper for close-range builds.'},
+  'Chaos Barrage':    {desc:'Unleash a cone of chaos bolts.',detail:'Highest burst chaos DPS. Best used on low-health targets or for finishing windows.'},
+  'Merciless Charge': {desc:'Dash through enemies dealing AoE damage.',detail:'Trade single-target DPS for AoE sweep. Better for add-heavy fights.'},
+  'Frost Bat':        {desc:'Throw a frost bat that chills on hit.',detail:'Basic frost damage + chill. Use until Crystal Lance becomes available.'},
+  'Cold Snap':        {desc:'Detonate a frost explosion around you.',detail:'Melee-range AoE that freezes nearby enemies briefly.'},
+  'Ice Nova':         {desc:'Ranged frost nova that slows enemies.',detail:'AoE slow at range. Strong crowd control for add-heavy or grouped fights.'},
+  'Crystal Lance':    {desc:'Charge and fire a powerful frost spear.',detail:'High single-target damage + freeze. Locks bosses for follow-up combos.'},
+  'Frost Barrier':    {desc:'Create a wall of ice that blocks projectiles.',detail:'Defensive utility — blocks ranged attacks. Situational but powerful.'},
+  'Arctic Leap':      {desc:'Leap and slam creating a frost AoE.',detail:'Gap-closer and AoE freeze combined. Excellent engagement ultimate.'},
+  'Ice Block':        {desc:'Encase yourself in ice — full immunity.',detail:'Panic button. Full immunity for a brief window. Saves from death blows.'},
+  'Arctic Storm':     {desc:'Summon a blizzard that chills everything around you.',detail:'Sustained AoE freeze — great for grouped adds and boss lockdown.'},
+  'Bone Explosion':   {desc:'Detonate a bone cage or corpse for AoE.',detail:'AoE with undead synergy. Strong in fights with multiple enemy corpses.'},
+  'Corrupted Skull':  {desc:'Launch a skull that bounces between targets.',detail:'Best AoE spell for multi-target fights. Bounces between undead minions automatically.'},
+  'Ward of the Damned':{desc:'Shield that spawns a skeleton on each blocked hit.',detail:'Defensive and minion-generating. Each block creates a skeleton that fights for you.'},
+  'Soulburn':         {desc:'Curse a target so they take amplified damage.',detail:'Damage multiplier — cast before your burst window for maximum output.'},
+  'Death Knight':     {desc:'Summon a death knight to fight for you.',detail:'Tanky minion that absorbs hits and deals sustained melee damage.'},
+  'Unholy Chains':    {desc:'Launch chains that root enemies in place.',detail:'Hard CC — roots targets for a clean follow-up combo window.'},
+  'Army of the Dead': {desc:'Raise a horde of skeletal warriors.',detail:'Full minion ultimate. Pairs with Ward of the Damned for a minion-centric build.'},
+  'Volatile Arachnid':{desc:'Summon an explosive spider that seeks targets.',detail:'Spider runs at targets and detonates for high single-target burst.'},
+  'Spectral Wolf':    {desc:'Send a wolf that rushes and bites a single target.',detail:'Single-target burst in a quick window. High damage against bosses between dodges.'},
+  'Phantom Aegis':    {desc:'Project a phantom shield that intercepts attacks.',detail:'Positioned shield that blocks projectiles from a specific direction.'},
+  'Wraith Spear':     {desc:'Throw a spectral spear that passes through enemies.',detail:'Penetrating ranged attack — hits multiple targets in a line.'},
+  'Curse':            {desc:'Apply a stacking curse that weakens the target.',detail:'Debuff that reduces enemy damage output over time. Niche utility pick.'},
+  'Spectral Guardian':{desc:'Summon a guardian that mirrors your spells.',detail:'Guardian echoes your casts for near-doubled output. Strong with high-cooldown spells.'},
+  'Wisp Dance':       {desc:'Unleash homing wisps that seek and damage enemies.',detail:'Multi-target homing AoE. Wisps seek automatically — good for chaotic fights.'},
+  'Ball Lightning':   {desc:'Hurl a slow orb that zaps nearby enemies.',detail:'AoE zoner — place near spawn points or choke points for passive ongoing damage.'},
+  'Cyclone':          {desc:'Spin and release a tornado.',detail:'AoE burst with brief knockback. Good for crowd control in tight spaces.'},
+  'Discharge':        {desc:'Release a burst of lightning around you.',detail:'Melee-range AoE. Pairs with Reaper or Mace for close-range builds.'},
+  'Polarity Shift':   {desc:'Instantly swap positions with a target.',detail:'Teleport repositioning. Escape or gap-close depending on context.'},
+  'Lightning Curtain':{desc:'Place a wall of lightning bolts.',detail:'Zone denial — enemies passing through take repeated hits.'},
+  'Lightning Tendrils':{desc:'Channel arcing lightning between multiple targets.',detail:'Sustained damage on grouped enemies. Good for fights with clustered adds.'},
+  'Raging Tempest':   {desc:'Summon a massive storm AoE.',detail:'Broad-coverage ultimate. Best for add-heavy fights and large arenas.'},
+  'Lightning Typhoon':{desc:'Unleash a spinning lightning storm.',detail:'High-damage AoE ultimate. Best storm ultimate for single-target boss DPS.'}
+};
+const BLOOD_INFO = {
+  Brute:    {cls:'bt-brute',   desc:'Lifesteal · max HP · HP regen',    detail:'Best sustain blood — each hit heals you back. Forgiving on errors, strong for long boss fights.'},
+  Rogue:    {cls:'bt-rogue',   desc:'Crit chance · crit damage · speed', detail:'High damage ceiling. At 90%+ quality the crit chance compounds — fastest kills when played well.'},
+  Scholar:  {cls:'bt-scholar', desc:'Spell cooldown reduction · spell power',detail:'Core for caster builds. CDR directly increases spell DPS uptime — pairs with Chaos Volley / Crystal Lance.'},
+  Warrior:  {cls:'bt-warrior', desc:'Physical power · weapon skill damage',detail:'Best for melee or weapon-heavy builds. Reaper and Mace benefit most from the physical power bonus.'},
+  Creature: {cls:'bt-creature',desc:'Mount speed · HP regen outdoors',  detail:'No combat benefit in boss fights. Swap to a combat type before engaging.'},
+  Draculin: {cls:'bt-draculin',desc:'Movement speed · servant missions', detail:'Some chaos-burst builds use the movement speed synergy. Otherwise Rogue or Brute outperform it.'},
+  Worker:   {cls:'bt-worker',  desc:'Resource yield · tool durability',  detail:'Zero combat benefit. Always swap to a combat blood type before a boss fight.'}
+};
+const WEAPON_TIERS = [
+  {name:'Copper',maxGL:36},{name:'Iron',maxGL:64},
+  {name:'Dark Silver',maxGL:74},{name:'Sanguine',maxGL:84},{name:'Primal Blood',maxGL:999}
+];
+const WEAPON_TYPES = ['Sword','Axe','Mace','Spear','Reaper','Crossbow','Twinblades','Greatsword'];
 
 const BOSSES = [
   // ============ ACT I — FARBANE WOODS ============
@@ -1369,7 +1657,11 @@ const SCHOOL = {
   // Illusion
   "Spectral Wolf":"illusion","Veil of Illusion":"illusion","Phantom Aegis":"illusion","Wraith Spear":"illusion","Spectral Guardian":"illusion","Wisp Dance":"illusion","Curse":"illusion",
   // Storm
-  "Veil of Storm":"storm","Ball Lightning":"storm","Cyclone":"storm","Discharge":"storm","Polarity Shift":"storm","Lightning Tendrils":"storm","Lightning Curtain":"storm","Raging Tempest":"storm","Lightning Typhoon":"storm"
+  "Veil of Storm":"storm","Ball Lightning":"storm","Cyclone":"storm","Discharge":"storm","Polarity Shift":"storm","Lightning Tendrils":"storm","Lightning Curtain":"storm","Raging Tempest":"storm","Lightning Typhoon":"storm",
+  // Frost (additional)
+  "Frost Bat":"frost","Cold Snap":"frost","Ice Nova":"frost","Arctic Storm":"frost","Arctic Leap":"frost","Ice Block":"frost",
+  // Unholy (additional)
+  "Curse":"illusion","Soulburn":"unholy","Death Knight":"unholy","Unholy Chains":"unholy","Volatile Arachnid":"unholy"
 };
 const school = name => SCHOOL[name] || '';
 const slugify = name => name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
@@ -1454,8 +1746,10 @@ function render(){
           <div class="gate"><span class="glabel">Gear you'll already have here</span>${b.gate}</div>
           <div class="tip">${b.tip}</div>
           <div class="reward"><b>UNLOCKS</b> &nbsp;${b.reward}</div>
+          <button class="customize-btn">⚒ Customize Build</button>
         </div></div>`;
       card.querySelector('.card-head').addEventListener('click',()=>card.classList.toggle('open'));
+      card.querySelector('.customize-btn').addEventListener('click',e=>{e.stopPropagation();openBuildDialog(b);});
       grid.appendChild(card);
     });
     root.appendChild(grid);
@@ -1570,11 +1864,318 @@ cheatToggle.addEventListener('click',()=>{
   if(!document.body.classList.contains('cheat-active')) window.scrollTo({top:0,behavior:'smooth'});
 });
 
-// hash routing — open and scroll to a card by URL fragment
+// ---- Build dialog ----
+const dlg = document.createElement('dialog');
+dlg.id = 'build-dialog';
+document.body.appendChild(dlg);
+
+let dlgBoss = null;
+let dlgBuild = {};
+let dlgTab = 'weapon';
+let dlgFilter = {};  // tab -> active school filter
+let dlgShared = false;  // true when showing an imported shared build
+
+function getTiers(gl) {
+  const cur = WEAPON_TIERS.find(t => gl <= t.maxGL);
+  const idx = WEAPON_TIERS.indexOf(cur);
+  const prev = idx > 0 ? WEAPON_TIERS[idx - 1] : null;
+  return {cur, prev};
+}
+
+function defaultBuild(b) {
+  const tiers = getTiers(b.lvl);
+  const weaponType = b.weapon.split(/[\s—–]+/)[0];
+  return {
+    weapon: (tiers.cur ? tiers.cur.name + ' ' : '') + weaponType,
+    blood: b.blood[0][0],
+    veil: b.veil === '—' ? '' : b.veil,
+    spell1: b.spells[0] === '—' ? '' : b.spells[0],
+    spell2: b.spells[1] === '—' ? '' : b.spells[1],
+    ult: b.ult === '—' ? '' : b.ult
+  };
+}
+
+function loadBuild(slug) {
+  try { const r = localStorage.getItem('vbc-build-'+slug); return r ? JSON.parse(r) : null; }
+  catch { return null; }
+}
+function saveBuildLS(slug, build) {
+  try { localStorage.setItem('vbc-build-'+slug, JSON.stringify(build)); } catch {}
+}
+function encBuild(slug, build) {
+  const e = v => encodeURIComponent(v||'').replace(/%20/g,'+');
+  return '#'+slug+'/'+[build.weapon,build.blood,build.veil,build.spell1,build.spell2,build.ult].map(e).join('/');
+}
+function parseUrlBuild(slug) {
+  const h = window.location.hash.slice(1);
+  const p = h.split('/');
+  if(p.length < 7 || p[0] !== slug) return null;
+  const dec = v => decodeURIComponent(v.replace(/\+/g,'%20'));
+  return {weapon:dec(p[1]),blood:dec(p[2]),veil:dec(p[3]),spell1:dec(p[4]),spell2:dec(p[5]),ult:dec(p[6])};
+}
+
+function openBuildDialog(boss) {
+  dlgBoss = boss;
+  dlgTab = 'weapon';
+  dlgFilter = {};
+  const slug = slugify(boss.name);
+  const urlBuild = parseUrlBuild(slug);
+  dlgShared = !!urlBuild;
+  dlgBuild = urlBuild || loadBuild(slug) || defaultBuild(boss);
+  renderDlg();
+  dlg.showModal();
+}
+
+function renderDlg() {
+  const b = dlgBoss;
+  const slug = slugify(b.name);
+  const def = defaultBuild(b);
+  const tiers = getTiers(b.lvl);
+
+  // Build tab pills from current dlgBuild
+  function tabPill(val, fallback) {
+    const v = val || fallback;
+    if(!v) return '';
+    const sc = school(v) || '';
+    return `<span class="pill ${sc}">${v}</span>`;
+  }
+
+  dlg.innerHTML = `
+  <div class="bd-hdr">
+    <div class="bd-hdr-text">
+      <h2>${b.name}</h2>
+      <p>GL ${b.lvl} · Customize Build · all unlocked abilities at this level</p>
+    </div>
+    <button class="bd-close" aria-label="Close">✕</button>
+  </div>
+  <div class="bd-tabs" role="tablist">
+    <button class="bd-tab${dlgTab==='weapon'?' active':''}" data-tab="weapon">Weapon</button>
+    <button class="bd-tab${dlgTab==='blood'?' active':''}" data-tab="blood">Blood</button>
+    <button class="bd-tab${dlgTab==='veil'?' active':''}" data-tab="veil">Veil ${tabPill(dlgBuild.veil,def.veil)}</button>
+    <button class="bd-tab${dlgTab==='spell1'?' active':''}" data-tab="spell1">Spell 1 ${tabPill(dlgBuild.spell1,def.spell1)}</button>
+    <button class="bd-tab${dlgTab==='spell2'?' active':''}" data-tab="spell2">Spell 2 ${tabPill(dlgBuild.spell2,def.spell2)}</button>
+    <button class="bd-tab${dlgTab==='ult'?' active':''}" data-tab="ult">Ultimate ${tabPill(dlgBuild.ult,def.ult)}</button>
+  </div>
+  <div class="bd-body" id="bd-panel"></div>
+  <div class="bd-footer">
+    <button class="bd-btn bd-ghost" id="bd-reset">Reset</button>
+    <button class="bd-btn bd-ghost" id="bd-share">⛓ Copy Link</button>
+    ${dlgShared
+      ? `<button class="bd-btn bd-import" id="bd-save">↓ Import Build</button>`
+      : `<button class="bd-btn bd-save" id="bd-save">Save Build <span class="bd-saved-msg" id="bd-saved">✓ Saved</span></button>`
+    }
+  </div>`;
+
+  dlg.querySelector('.bd-close').onclick = () => dlg.close();
+  dlg.addEventListener('click', e => { if(e.target === dlg) dlg.close(); }, {once:false});
+  dlg.querySelectorAll('.bd-tab').forEach(btn => {
+    btn.onclick = () => { dlgTab = btn.dataset.tab; renderPanel(); refreshTabs(); };
+  });
+  dlg.querySelector('#bd-reset').onclick = () => {
+    dlgBuild = defaultBuild(b); dlgShared = false; renderDlg();
+  };
+  dlg.querySelector('#bd-share').onclick = () => {
+    const url = location.origin + location.pathname + encBuild(slug, dlgBuild);
+    navigator.clipboard?.writeText(url).catch(()=>{});
+    const btn = dlg.querySelector('#bd-share');
+    btn.textContent = '✓ Copied!'; setTimeout(()=>{ btn.textContent='⛓ Copy Link'; },2000);
+  };
+  dlg.querySelector('#bd-save').onclick = () => {
+    saveBuildLS(slug, dlgBuild);
+    if(dlgShared) { dlgShared = false; renderDlg(); return; }
+    const msg = dlg.querySelector('#bd-saved');
+    if(msg) { msg.style.display='inline'; setTimeout(()=>{ msg.style.display='none'; },2000); }
+  };
+
+  renderPanel();
+}
+
+function refreshTabs() {
+  const b = dlgBoss;
+  const def = defaultBuild(b);
+  function tabPill(val, fallback) {
+    const v = val || fallback;
+    if(!v) return '';
+    const sc = school(v) || '';
+    return `<span class="pill ${sc}">${v}</span>`;
+  }
+  dlg.querySelectorAll('.bd-tab').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.tab === dlgTab);
+  });
+  const veilTab = dlg.querySelector('[data-tab="veil"]');
+  const s1Tab   = dlg.querySelector('[data-tab="spell1"]');
+  const s2Tab   = dlg.querySelector('[data-tab="spell2"]');
+  const ultTab  = dlg.querySelector('[data-tab="ult"]');
+  if(veilTab) veilTab.innerHTML = 'Veil ' + tabPill(dlgBuild.veil, def.veil);
+  if(s1Tab)   s1Tab.innerHTML   = 'Spell 1 ' + tabPill(dlgBuild.spell1, def.spell1);
+  if(s2Tab)   s2Tab.innerHTML   = 'Spell 2 ' + tabPill(dlgBuild.spell2, def.spell2);
+  if(ultTab)  ultTab.innerHTML  = 'Ultimate ' + tabPill(dlgBuild.ult, def.ult);
+  // re-attach onclick after innerHTML replacement
+  dlg.querySelectorAll('.bd-tab').forEach(btn => {
+    btn.onclick = () => { dlgTab = btn.dataset.tab; renderPanel(); refreshTabs(); };
+  });
+}
+
+function renderPanel() {
+  const panel = dlg.querySelector('#bd-panel');
+  const b = dlgBoss;
+  const gl = b.lvl;
+  const def = defaultBuild(b);
+  const tiers = getTiers(gl);
+  const activeFilter = dlgFilter[dlgTab] || 'rec';
+
+  if(dlgTab === 'weapon') {
+    panel.innerHTML = renderCurPick('Weapon', dlgBuild.weapon || def.weapon, 'Select your preferred weapon type for this fight.');
+    let html = '';
+    [tiers.cur, tiers.prev].filter(Boolean).forEach((tier, i) => {
+      html += `<div class="bd-tier-label" style="${i>0?'opacity:.42':''}">
+        ${tier.name}${i===0?' — current tier':' — previous tier'}</div>
+      <div class="bd-wrow">`;
+      WEAPON_TYPES.forEach(wt => {
+        const full = tier.name + ' ' + wt;
+        const sel = (dlgBuild.weapon || def.weapon) === full;
+        html += `<div class="bd-wep${sel?' selected':''}" data-weapon="${full}">
+          <div class="bd-wep-name">${wt}</div>
+        </div>`;
+      });
+      html += '</div>';
+    });
+    panel.insertAdjacentHTML('beforeend', html);
+    panel.querySelectorAll('.bd-wep').forEach(el => {
+      el.onclick = () => {
+        dlgBuild.weapon = el.dataset.weapon;
+        renderPanel();
+        refreshTabs();
+      };
+    });
+    return;
+  }
+
+  if(dlgTab === 'blood') {
+    panel.innerHTML = renderCurPick('Blood', dlgBuild.blood || def.blood,
+      BLOOD_INFO[dlgBuild.blood||def.blood]?.desc || '');
+    let html = `<div class="bd-grid">`;
+    Object.entries(BLOOD_INFO).forEach(([bt, info]) => {
+      const sel = (dlgBuild.blood || def.blood) === bt;
+      html += `<div class="bd-bt${sel?' selected':''}" data-bt="${bt}">
+        <div class="bd-bt-name ${info.cls}">${bt}</div>
+        <div class="bd-bt-desc">${info.desc}</div>
+        <div class="bd-bt-detail">${info.detail}</div>
+      </div>`;
+    });
+    html += '</div>';
+    panel.insertAdjacentHTML('beforeend', html);
+    panel.querySelectorAll('.bd-bt').forEach(el => {
+      el.onclick = () => {
+        if(el.classList.contains('open') && (dlgBuild.blood||def.blood) !== el.dataset.bt) {
+          dlgBuild.blood = el.dataset.bt; renderPanel(); refreshTabs(); return;
+        }
+        if((dlgBuild.blood||def.blood) !== el.dataset.bt) {
+          dlgBuild.blood = el.dataset.bt; renderPanel(); refreshTabs(); return;
+        }
+        el.classList.toggle('open');
+      };
+    });
+    return;
+  }
+
+  // Spell / veil / ult panels
+  let candidates;
+  if(dlgTab === 'veil')   candidates = Object.keys(SPELL_INFO).filter(n => VEILS.has(n));
+  else if(dlgTab === 'ult') candidates = Object.keys(SPELL_INFO).filter(n => ULTS.has(n));
+  else                    candidates = Object.keys(SPELL_INFO).filter(n => !VEILS.has(n) && !ULTS.has(n));
+
+  const curVal = dlgBuild[dlgTab] || def[dlgTab] || '';
+  const defVal = def[dlgTab] || '';
+  const recSet = new Set(
+    [def.veil, def.spell1, def.spell2, def.ult, b.altUlt].filter(Boolean)
+  );
+
+  const curInfo = SPELL_INFO[curVal] || {};
+  panel.innerHTML = renderCurPick(
+    dlgTab === 'spell1' ? 'Spell 1' : dlgTab === 'spell2' ? 'Spell 2' :
+    dlgTab === 'veil' ? 'Veil / Mobility' : 'Ultimate',
+    curVal, curInfo.desc || ''
+  );
+
+  const schools = [...new Set(candidates.map(n => school(n)).filter(Boolean))].sort();
+  let filtersHtml = `<div class="bd-filters">
+    <button class="bd-sf${activeFilter==='rec'?' active':''}" data-f="rec">Recommended</button>`;
+  schools.forEach(sc => {
+    filtersHtml += `<button class="bd-sf${activeFilter===sc?' active '+sc:''}" data-f="${sc}">${sc}</button>`;
+  });
+  filtersHtml += '</div>';
+  panel.insertAdjacentHTML('beforeend', filtersHtml);
+
+  let gridHtml = `<div class="bd-grid">`;
+  candidates.forEach(name => {
+    const sc = school(name) || '';
+    const info = SPELL_INFO[name] || {};
+    const unlockGL = UNLOCK[name] ?? 0;
+    const locked = unlockGL > gl;
+    const isRec = recSet.has(name);
+    const hidden = activeFilter === 'rec' ? !isRec : (sc !== activeFilter);
+    const sel = name === curVal;
+    gridHtml += `<div class="bd-item${sel?' selected':''}${locked?' bd-locked':''}${hidden?' bd-hidden':''}"
+      data-name="${name}" data-school="${sc}" data-rec="${isRec?'1':'0'}">
+      <div class="bd-iname"><span class="pill ${sc}">${sc}</span>${name}</div>
+      <div class="bd-idesc">${info.desc||''}</div>
+      <div class="bd-idetail">
+        ${info.detail||''}
+        ${locked
+          ? `<span class="bd-locked-note">Locked — unlocks GL ${unlockGL} · ${UNLOCK_SRC[unlockGL]||'GL '+unlockGL}</span>`
+          : `<span class="bd-unlock">Unlocks GL ${unlockGL} · ${UNLOCK_SRC[unlockGL]||'GL '+unlockGL}</span>`
+        }
+      </div>
+    </div>`;
+  });
+  gridHtml += '</div>';
+  panel.insertAdjacentHTML('beforeend', gridHtml);
+
+  panel.querySelectorAll('.bd-sf').forEach(btn => {
+    btn.onclick = () => {
+      dlgFilter[dlgTab] = btn.dataset.f;
+      const f = btn.dataset.f;
+      panel.querySelectorAll('.bd-sf').forEach(b => {
+        b.classList.remove('active','blood','chaos','frost','unholy','illusion','storm');
+        if(b === btn) { b.classList.add('active'); if(f !== 'rec') b.classList.add(f); }
+      });
+      panel.querySelectorAll('.bd-item').forEach(item => {
+        const isRec = item.dataset.rec === '1';
+        const isSc  = item.dataset.school === f;
+        item.classList.toggle('bd-hidden', f === 'rec' ? !isRec : !isSc);
+      });
+    };
+  });
+
+  panel.querySelectorAll('.bd-item').forEach(el => {
+    el.onclick = () => {
+      const name = el.dataset.name;
+      if(el.classList.contains('bd-locked')) { el.classList.toggle('open'); return; }
+      if(name === curVal) { el.classList.toggle('open'); return; }
+      dlgBuild[dlgTab] = name;
+      renderPanel(); refreshTabs();
+    };
+  });
+}
+
+function renderCurPick(label, name, desc) {
+  const sc = school(name) || '';
+  return `<div class="bd-cur">
+    <div>
+      <div class="bd-cur-label">${label} — current pick</div>
+      <div class="bd-cur-name"><span class="pill ${sc}" style="margin-right:.4rem">${name||'—'}</span></div>
+      ${desc ? `<div class="bd-cur-desc">${desc}</div>` : ''}
+    </div>
+  </div>`;
+}
+
+// hash routing — open card by fragment, also parse shared build URLs
 function handleHash(){
   const hash = window.location.hash.slice(1);
   if(!hash) return;
-  const card = document.getElementById(hash);
+  const slug = hash.split('/')[0];
+  const card = document.getElementById(slug);
   if(!card) return;
   if(document.body.classList.contains('cheat-active')){
     document.body.classList.remove('cheat-active');
@@ -1583,6 +2184,11 @@ function handleHash(){
   }
   card.classList.add('open');
   setTimeout(()=>card.scrollIntoView({behavior:'smooth',block:'center'}),80);
+  // If URL has build segments, open the build dialog for that boss
+  if(hash.split('/').length >= 7){
+    const bossObj = BOSSES.find(b => slugify(b.name) === slug);
+    if(bossObj) setTimeout(()=>openBuildDialog(bossObj), 300);
+  }
 }
 window.addEventListener('hashchange',handleHash);
 handleHash();
