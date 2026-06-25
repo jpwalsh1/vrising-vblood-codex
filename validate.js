@@ -60,7 +60,7 @@ const UNLOCK = {
   'Cyclone': 50, 'Ball Lightning': 50, 'Discharge': 50,
   'Polarity Shift': 60, 'Lightning Curtain': 60, 'Lightning Tendrils': 60,
   // Ultimates
-  'Heart Strike': 37, 'Crimson Beam': 61, 'Chaos Barrage': 37,
+  'Heart Strike': 37, 'Crimson Beam': 37, 'Chaos Barrage': 37,
   'Merciless Charge': 37, 'Army of the Dead': 63, 'Volatile Arachnid': 63,
   'Arctic Leap': 53, 'Ice Block': 53, 'Raging Tempest': 58,
   'Lightning Typhoon': 58, 'Spectral Guardian': 53, 'Wisp Dance': 53
