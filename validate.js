@@ -53,7 +53,7 @@ const UNLOCK = {
   'Shadowbolt': 0, 'Blood Rite': 0, 'Blood Rage': 20,
   'Blood Fountain': 57, 'Sanguine Coil': 57, 'Carrion Swarm': 57,
   'Corrupted Skull': 47, 'Bone Explosion': 27, 'Ward of the Damned': 37,
-  'Soulburn': 63, 'Death Knight': 63, 'Unholy Chains': 63,
+  'Soulburn': 47, 'Death Knight': 47, 'Unholy Chains': 47,
   'Spectral Wolf': 27, 'Phantom Aegis': 27, 'Wraith Spear': 27,
   'Frost Bat': 20, 'Cold Snap': 20, 'Ice Nova': 20,
   'Crystal Lance': 53, 'Frost Barrier': 44,

@@ -31,6 +31,20 @@ const slugify = name => name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^
 const BT_CLASS = {Brute:'bt-brute',Rogue:'bt-rogue',Scholar:'bt-scholar',Warrior:'bt-warrior',Creature:'bt-creature',Draculin:'bt-draculin',Worker:'bt-worker'};
 const btSpan = name => BT_CLASS[name] ? `<span class="${BT_CLASS[name]}">${name}</span>` : name;
 
+function renderReward(b) {
+  let html = '';
+  if (b.spellPt) {
+    const sc = b.spellPt.sc;
+    const tLabel = {1:'T1',2:'T2',3:'Ult',4:'Veil'}[b.spellPt.t] || `T${b.spellPt.t}`;
+    const scLabel = sc.charAt(0).toUpperCase() + sc.slice(1);
+    html += `<span class="pill ${sc}">${scLabel} ${tLabel}</span> `;
+  }
+  if (b.passive) {
+    html += `<span class="pill passive">Passive Slot</span> `;
+  }
+  return html + (b.reward || '');
+}
+
 function kitRows(b, customBuild) {
   const none = v => !v || v === '—';
   const pill = v => none(v) ? `<span class="pill empty">—</span>` : `<span class="pill ${school(v)}">${v}</span>`;
@@ -105,7 +119,7 @@ function render(){
             ${b.tag ? `<span class="boss-tag${b.tagKind?' '+b.tagKind:''}">${b.tag}</span>` : ''}
             <div class="epithet">${b.epithet}</div>
             <span class="loc">${b.loc}</span>
-            <span class="card-reward">${b.reward}</span>
+            <span class="card-reward">${renderReward(b)}</span>
           </div>
           <div class="chevron">▼</div>
         </div>
@@ -115,7 +129,7 @@ function render(){
           <div class="kit-section">${kitRows(b, loadBuild(slug))}</div>
           <div class="gate"><span class="glabel">Gear you'll already have here</span>${b.gate}</div>
           <div class="tip">${b.tip}</div>
-          <div class="reward"><b>UNLOCKS</b> &nbsp;${b.reward}</div>
+          <div class="reward"><b>UNLOCKS</b> &nbsp;${renderReward(b)}</div>
           <button class="customize-btn">⚒ Customize Build</button>
         </div></div>`;
       card.querySelector('.card-head').addEventListener('click',()=>card.classList.toggle('open'));
